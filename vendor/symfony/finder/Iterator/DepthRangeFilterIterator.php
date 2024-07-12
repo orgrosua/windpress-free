@@ -31,7 +31,7 @@ class DepthRangeFilterIterator extends \FilterIterator
     public function __construct(\RecursiveIteratorIterator $iterator, int $minDepth = 0, int $maxDepth = \PHP_INT_MAX)
     {
         $this->minDepth = $minDepth;
-        $iterator->setMaxDepth((\PHP_INT_MAX === $maxDepth) ? -1 : $maxDepth);
+        $iterator->setMaxDepth(\PHP_INT_MAX === $maxDepth ? -1 : $maxDepth);
         parent::__construct($iterator);
     }
     /**

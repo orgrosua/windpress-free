@@ -64,7 +64,7 @@ class Comparator
     public function setOperator(string $operator)
     {
         trigger_deprecation('symfony/finder', '5.4', '"%s" is deprecated. Set the operator via the constructor instead.', __METHOD__);
-        $this->doSetOperator(('' === $operator) ? '==' : $operator);
+        $this->doSetOperator('' === $operator ? '==' : $operator);
     }
     /**
      * Tests against the target.
@@ -92,10 +92,10 @@ class Comparator
         }
         return $test == $this->target;
     }
-    private function doSetOperator(string $operator): void
+    private function doSetOperator(string $operator) : void
     {
         if (!\in_array($operator, ['>', '<', '>=', '<=', '==', '!='])) {
-            throw new \InvalidArgumentException(sprintf('Invalid operator "%s".', $operator));
+            throw new \InvalidArgumentException(\sprintf('Invalid operator "%s".', $operator));
         }
         $this->operator = $operator;
     }

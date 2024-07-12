@@ -96,7 +96,7 @@ class StopwatchEvent
         if (!\count($this->started)) {
             throw new \LogicException('stop() called but start() has not been called before.');
         }
-        $this->periods[] = new StopwatchPeriod(array_pop($this->started), $this->getNow(), $this->morePrecision);
+        $this->periods[] = new StopwatchPeriod(\array_pop($this->started), $this->getNow(), $this->morePrecision);
         return $this;
     }
     /**
@@ -200,26 +200,26 @@ class StopwatchEvent
      */
     protected function getNow()
     {
-        return $this->formatTime(microtime(\true) * 1000 - $this->origin);
+        return $this->formatTime(\microtime(\true) * 1000 - $this->origin);
     }
     /**
      * Formats a time.
      *
      * @throws \InvalidArgumentException When the raw time is not valid
      */
-    private function formatTime(float $time): float
+    private function formatTime(float $time) : float
     {
-        return round($time, 1);
+        return \round($time, 1);
     }
     /**
      * Gets the event name.
      */
-    public function getName(): string
+    public function getName() : string
     {
         return $this->name;
     }
-    public function __toString(): string
+    public function __toString() : string
     {
-        return sprintf('%s/%s: %.2F MiB - %d ms', $this->getCategory(), $this->getName(), $this->getMemory() / 1024 / 1024, $this->getDuration());
+        return \sprintf('%s/%s: %.2F MiB - %d ms', $this->getCategory(), $this->getName(), $this->getMemory() / 1024 / 1024, $this->getDuration());
     }
 }

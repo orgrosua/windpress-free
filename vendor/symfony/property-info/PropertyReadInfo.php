@@ -40,29 +40,29 @@ final class PropertyReadInfo
     /**
      * Get type of access.
      */
-    public function getType(): string
+    public function getType() : string
     {
         return $this->type;
     }
     /**
      * Get name of the access, which can be a method name or a property name, depending on the type.
      */
-    public function getName(): string
+    public function getName() : string
     {
         return $this->name;
     }
-    public function getVisibility(): string
+    public function getVisibility() : string
     {
         return $this->visibility;
     }
-    public function isStatic(): bool
+    public function isStatic() : bool
     {
         return $this->static;
     }
     /**
      * Whether this accessor can be accessed by reference.
      */
-    public function canBeReference(): bool
+    public function canBeReference() : bool
     {
         return $this->byRef;
     }

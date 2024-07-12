@@ -20,5 +20,5 @@ interface PropertyWriteInfoExtractorInterface
     /**
      * Get write information object for a given property of a class.
      */
-    public function getWriteInfo(string $class, string $property, array $context = []): ?PropertyWriteInfo;
+    public function getWriteInfo(string $class, string $property, array $context = []) : ?PropertyWriteInfo;
 }

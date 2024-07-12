@@ -15,7 +15,7 @@ foreach ($json as $name => $obj) {
     $table[$sname] = $obj->characters;
 }
 echo '<?php
-namespace Masterminds\HTML5;
+namespace Masterminds\\HTML5;
 /** Entity lookup tables. This class is automatically generated. */
 class Entities {
   public static $byName = ';

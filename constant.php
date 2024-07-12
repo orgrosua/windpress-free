@@ -25,7 +25,7 @@ class WIND_PRESS
     /**
      * @var string
      */
-    public const VERSION = '0.0.1';
+    public const VERSION = '0.0.2';
     /**
      * @var string
      */
@@ -62,4 +62,4 @@ class WIND_PRESS
  *
  * @since 1.0.0
  */
-\class_alias('WindPressPackages\WIND_PRESS', 'WIND_PRESS', \false);
+\class_alias('WindPressPackages\\WIND_PRESS', 'WIND_PRESS', \false);

@@ -55,14 +55,14 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
     public function current()
     {
         // the logic here avoids redoing the same work in all iterations
-        if (null === $subPathname = $this->subPath) {
+        if (null === ($subPathname = $this->subPath)) {
             $subPathname = $this->subPath = $this->getSubPath();
         }
         if ('' !== $subPathname) {
             $subPathname .= $this->directorySeparator;
         }
         $subPathname .= $this->getFilename();
-        if ('/' !== $basePath = $this->rootPath) {
+        if ('/' !== ($basePath = $this->rootPath)) {
             $basePath .= $this->directorySeparator;
         }
         return new SplFileInfo($basePath . $subPathname, $this->subPath, $subPathname);

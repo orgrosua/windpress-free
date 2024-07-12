@@ -35,7 +35,7 @@ class Client
      */
     public function __construct($size = 21, GeneratorInterface $generator = null)
     {
-        $this->size = ($size > 0) ? $size : 21;
+        $this->size = $size > 0 ? $size : 21;
         $this->generator = $generator ?: new Generator();
         $this->core = new Core();
         $this->alphabet = CoreInterface::SAFE_SYMBOLS;
@@ -49,7 +49,7 @@ class Client
      */
     public function generateId($size = 0, $mode = self::MODE_NORMAL)
     {
-        $size = ($size > 0) ? $size : $this->size;
+        $size = $size > 0 ? $size : $this->size;
         switch ($mode) {
             case self::MODE_DYNAMIC:
                 return $this->core->random($this->generator, $size, $this->alphabet);
@@ -70,7 +70,7 @@ class Client
     public function formattedId($alphabet, $size = 0, GeneratorInterface $generator = null)
     {
         $alphabet = $alphabet ?: CoreInterface::SAFE_SYMBOLS;
-        $size = ($size > 0) ? $size : $this->size;
+        $size = $size > 0 ? $size : $this->size;
         $generator = $generator ?: $this->generator;
         return $this->core->random($generator, $size, $alphabet);
     }
@@ -86,7 +86,7 @@ class Client
      */
     public function formatedId($alphabet, $size = 0, GeneratorInterface $generator = null)
     {
-        $size = ($size > 0) ? $size : $this->size;
+        $size = $size > 0 ? $size : $this->size;
         return $this->formattedId($alphabet, $size, $generator);
     }
     /**
@@ -102,8 +102,8 @@ class Client
     {
         $id = '';
         while (1 <= $size--) {
-            $rand = mt_rand() / (mt_getrandmax() + 1);
-            $id .= $this->alphabet[intval($rand * 64)];
+            $rand = \mt_rand() / (\mt_getrandmax() + 1);
+            $id .= $this->alphabet[\intval($rand * 64)];
         }
         return $id;
     }

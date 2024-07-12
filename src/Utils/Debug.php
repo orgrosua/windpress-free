@@ -27,7 +27,7 @@ class Debug
     /**
      * Get the stopwatch instance.
      */
-    public static function stopwatch(): Stopwatch
+    public static function stopwatch() : Stopwatch
     {
         if (!isset(self::$stopwatch_instance)) {
             self::$stopwatch_instance = new Stopwatch(\true);
@@ -46,12 +46,12 @@ class Debug
         if ($stopwatchEvent === []) {
             return;
         }
-        $log = '=== ' . date('Y-m-d H:i:s', time()) . ' ===' . \PHP_EOL;
+        $log = '=== ' . \date('Y-m-d H:i:s', \time()) . ' ===' . \PHP_EOL;
         foreach ($stopwatchEvent as $ev) {
             $log .= (string) $ev . \PHP_EOL;
         }
         $log .= \PHP_EOL;
-        $path = wp_upload_dir()['basedir'] . '/windpress/debug/stopwatch.log';
+        $path = \wp_upload_dir()['basedir'] . '/windpress/debug/stopwatch.log';
         try {
             \WindPress\WindPress\Utils\Common::save_file($log, $path, \FILE_APPEND);
         } catch (Throwable $throwable) {

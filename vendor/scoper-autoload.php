@@ -4,7 +4,7 @@
 
 $loader = (static function () {
     // Backup the autoloaded Composer files
-    $existingComposerAutoloadFiles = isset($GLOBALS['__composer_autoload_files']) ? $GLOBALS['__composer_autoload_files'] : [];
+    $existingComposerAutoloadFiles = $GLOBALS['__composer_autoload_files'] ?? [];
 
     $loader = require_once __DIR__.'/autoload.php';
     // Ensure InstalledVersions is available
@@ -85,7 +85,6 @@ if (!function_exists('mb_ord')) { function mb_ord() { return \WindPressPackages\
 if (!function_exists('mb_output_handler')) { function mb_output_handler() { return \WindPressPackages\mb_output_handler(...func_get_args()); } }
 if (!function_exists('mb_parse_str')) { function mb_parse_str() { return \WindPressPackages\mb_parse_str(...func_get_args()); } }
 if (!function_exists('mb_scrub')) { function mb_scrub() { return \WindPressPackages\mb_scrub(...func_get_args()); } }
-if (!function_exists('mb_str_pad')) { function mb_str_pad() { return \WindPressPackages\mb_str_pad(...func_get_args()); } }
 if (!function_exists('mb_str_split')) { function mb_str_split() { return \WindPressPackages\mb_str_split(...func_get_args()); } }
 if (!function_exists('mb_stripos')) { function mb_stripos() { return \WindPressPackages\mb_stripos(...func_get_args()); } }
 if (!function_exists('mb_stristr')) { function mb_stristr() { return \WindPressPackages\mb_stristr(...func_get_args()); } }

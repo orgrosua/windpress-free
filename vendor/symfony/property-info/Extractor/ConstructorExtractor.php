@@ -29,7 +29,7 @@ final class ConstructorExtractor implements PropertyTypeExtractorInterface
     /**
      * {@inheritdoc}
      */
-    public function getTypes(string $class, string $property, array $context = []): ?array
+    public function getTypes(string $class, string $property, array $context = []) : ?array
     {
         foreach ($this->extractors as $extractor) {
             $value = $extractor->getTypesFromConstructor($class, $property);

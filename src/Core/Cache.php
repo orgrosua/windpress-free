@@ -23,21 +23,21 @@ class Cache
      * @var string
      */
     public const CSS_CACHE_FILE = 'tailwind.css';
-    public static function get_providers(): array
+    public static function get_providers() : array
     {
         /**
          * Register cache providers.
          * @param array $providers The list of cache providers. Each provider should have `id`, `name`, `description`, and `callback` keys.
          */
-        return apply_filters('f!windpress/core/cache:compile.providers', []);
+        return \apply_filters('f!windpress/core/cache:compile.providers', []);
     }
-    public static function get_cache_path(string $file_path = ''): string
+    public static function get_cache_path(string $file_path = '') : string
     {
-        return wp_upload_dir()['basedir'] . WIND_PRESS::CACHE_DIR . $file_path;
+        return \wp_upload_dir()['basedir'] . WIND_PRESS::CACHE_DIR . $file_path;
     }
-    public static function get_cache_url(string $file_path = ''): string
+    public static function get_cache_url(string $file_path = '') : string
     {
-        return wp_upload_dir()['baseurl'] . WIND_PRESS::CACHE_DIR . $file_path;
+        return \wp_upload_dir()['baseurl'] . WIND_PRESS::CACHE_DIR . $file_path;
     }
     public static function save_cache(string $payload)
     {
@@ -51,22 +51,22 @@ class Cache
     public static function fetch_contents($callback, $metadata = [])
     {
         // if class has an "__invoke" method.
-        if (is_string($callback) && class_exists($callback) && method_exists($callback, '__invoke')) {
+        if (\is_string($callback) && \class_exists($callback) && \method_exists($callback, '__invoke')) {
             $callback = new $callback();
         }
         try {
-            $result = call_user_func($callback, $metadata);
-            if (!is_array($result)) {
+            $result = \call_user_func($callback, $metadata);
+            if (!\is_array($result)) {
                 throw new \Exception('The callback should return an array');
             }
-            $_metadata = array_key_exists('metadata', $result) ? $result['metadata'] : [];
-            $_contents = array_key_exists('contents', $result) ? $result['contents'] : $result;
-            $_contents = array_map(static function ($content) {
-                if (is_array($content['content']) || is_object($content['content'])) {
-                    $content['content'] = json_encode($content['content']);
+            $_metadata = \array_key_exists('metadata', $result) ? $result['metadata'] : [];
+            $_contents = \array_key_exists('contents', $result) ? $result['contents'] : $result;
+            $_contents = \array_map(static function ($content) {
+                if (\is_array($content['content']) || \is_object($content['content'])) {
+                    $content['content'] = \json_encode($content['content']);
                     $content['type'] = 'json';
                 }
-                $content['content'] = is_string($content['content']) ? base64_encode($content['content']) : null;
+                $content['content'] = \is_string($content['content']) ? \base64_encode($content['content']) : null;
                 return $content;
             }, $_contents);
         } catch (\Throwable $throwable) {

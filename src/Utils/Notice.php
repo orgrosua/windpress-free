@@ -42,11 +42,11 @@ class Notice
     /**
      * Get lists of notices.
      */
-    public static function get_lists(?bool $purge = \true): array
+    public static function get_lists(?bool $purge = \true) : array
     {
-        $notices = get_option(self::OPTION_NAME, []);
+        $notices = \get_option(self::OPTION_NAME, []);
         if ($purge) {
-            update_option(self::OPTION_NAME, []);
+            \update_option(self::OPTION_NAME, []);
         }
         return $notices;
     }
@@ -54,24 +54,24 @@ class Notice
      * Callback for the admin_notices action.
      * Prints the notices in the admin page.
      */
-    public static function admin_notices(): void
+    public static function admin_notices() : void
     {
         $messages = self::get_lists();
-        if ($messages && is_array($messages)) {
+        if ($messages && \is_array($messages)) {
             foreach ($messages as $message) {
-                echo sprintf('<div class="notice notice-%s is-dismissible %s">%s</div>', $message['status'], self::OPTION_NAME, $message['message']);
+                echo \sprintf('<div class="notice notice-%s is-dismissible %s">%s</div>', $message['status'], self::OPTION_NAME, $message['message']);
             }
         }
     }
-    public static function add(string $status, string $message, ?string $key = null, bool $unique = \false): void
+    public static function add(string $status, string $message, ?string $key = null, bool $unique = \false) : void
     {
-        $notices = get_option(self::OPTION_NAME, []);
+        $notices = \get_option(self::OPTION_NAME, []);
         $payload = ['status' => $status, 'message' => $message];
         if ($unique) {
             if ($key && isset($notices[$key])) {
                 return;
             }
-            if (in_array(['status' => $status, 'message' => $message], $notices, \true)) {
+            if (\in_array(['status' => $status, 'message' => $message], $notices, \true)) {
                 return;
             }
         }
@@ -80,40 +80,40 @@ class Notice
         } else {
             $notices[] = $payload;
         }
-        update_option(self::OPTION_NAME, $notices);
+        \update_option(self::OPTION_NAME, $notices);
     }
     /**
      * Add bulk notices.
      *
      * @param string|array $messages a message or an array of messages to add.
      */
-    public static function adds(string $status, $messages): void
+    public static function adds(string $status, $messages) : void
     {
-        if (!is_array($messages)) {
+        if (!\is_array($messages)) {
             $messages = [$messages];
         }
         foreach ($messages as $message) {
-            if (!is_array($message)) {
+            if (!\is_array($message)) {
                 self::add($status, $message);
             } else {
                 self::add($status, ...$message);
             }
         }
     }
-    public static function success(string $message, ?string $key = null, bool $unique = \false): void
+    public static function success(string $message, ?string $key = null, bool $unique = \false) : void
     {
-        self::add(self::SUCCESS, ...func_get_args());
+        self::add(self::SUCCESS, ...\func_get_args());
     }
-    public static function warning(string $message, ?string $key = null, bool $unique = \false): void
+    public static function warning(string $message, ?string $key = null, bool $unique = \false) : void
     {
-        self::add(self::WARNING, ...func_get_args());
+        self::add(self::WARNING, ...\func_get_args());
     }
-    public static function info(string $message, ?string $key = null, bool $unique = \false): void
+    public static function info(string $message, ?string $key = null, bool $unique = \false) : void
     {
-        self::add(self::INFO, ...func_get_args());
+        self::add(self::INFO, ...\func_get_args());
     }
-    public static function error(string $message, ?string $key = null, bool $unique = \false): void
+    public static function error(string $message, ?string $key = null, bool $unique = \false) : void
     {
-        self::add(self::ERROR, ...func_get_args());
+        self::add(self::ERROR, ...\func_get_args());
     }
 }

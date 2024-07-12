@@ -41,7 +41,7 @@ final class PhpStanTypeHelper
      *
      * @return Type[]
      */
-    public function getTypes(PhpDocTagValueNode $node, NameScope $nameScope): array
+    public function getTypes(PhpDocTagValueNode $node, NameScope $nameScope) : array
     {
         if ($node instanceof ParamTagValueNode || $node instanceof ReturnTagValueNode || $node instanceof VarTagValueNode) {
             return $this->compressNullableType($this->extractTypes($node->type, $nameScope));
@@ -56,7 +56,7 @@ final class PhpStanTypeHelper
      *
      * @return Type[]
      */
-    private function compressNullableType(array $types): array
+    private function compressNullableType(array $types) : array
     {
         $firstTypeIndex = null;
         $nullableTypeIndex = null;
@@ -76,12 +76,12 @@ final class PhpStanTypeHelper
             $types[$firstTypeIndex] = new Type($firstType->getBuiltinType(), \true, $firstType->getClassName(), $firstType->isCollection(), $firstType->getCollectionKeyTypes(), $firstType->getCollectionValueTypes());
             unset($types[$nullableTypeIndex]);
         }
-        return array_values($types);
+        return \array_values($types);
     }
     /**
      * @return Type[]
      */
-    private function extractTypes(TypeNode $node, NameScope $nameScope): array
+    private function extractTypes(TypeNode $node, NameScope $nameScope) : array
     {
         if ($node instanceof UnionTypeNode) {
             $types = [];
@@ -103,7 +103,7 @@ final class PhpStanTypeHelper
             }
             $collection = $mainType->isCollection() || \in_array($mainType->getClassName(), [\Traversable::class, \Iterator::class, \IteratorAggregate::class, \ArrayAccess::class, \Generator::class], \true);
             // it's safer to fall back to other extractors if the generic type is too abstract
-            if (!$collection && !class_exists($mainType->getClassName())) {
+            if (!$collection && !\class_exists($mainType->getClassName())) {
                 return [];
             }
             $collectionKeyTypes = $mainType->getCollectionKeyTypes();

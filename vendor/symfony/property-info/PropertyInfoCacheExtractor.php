@@ -31,49 +31,49 @@ class PropertyInfoCacheExtractor implements PropertyInfoExtractorInterface, Prop
     /**
      * {@inheritdoc}
      */
-    public function isReadable(string $class, string $property, array $context = []): ?bool
+    public function isReadable(string $class, string $property, array $context = []) : ?bool
     {
         return $this->extract('isReadable', [$class, $property, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function isWritable(string $class, string $property, array $context = []): ?bool
+    public function isWritable(string $class, string $property, array $context = []) : ?bool
     {
         return $this->extract('isWritable', [$class, $property, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function getShortDescription(string $class, string $property, array $context = []): ?string
+    public function getShortDescription(string $class, string $property, array $context = []) : ?string
     {
         return $this->extract('getShortDescription', [$class, $property, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function getLongDescription(string $class, string $property, array $context = []): ?string
+    public function getLongDescription(string $class, string $property, array $context = []) : ?string
     {
         return $this->extract('getLongDescription', [$class, $property, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function getProperties(string $class, array $context = []): ?array
+    public function getProperties(string $class, array $context = []) : ?array
     {
         return $this->extract('getProperties', [$class, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function getTypes(string $class, string $property, array $context = []): ?array
+    public function getTypes(string $class, string $property, array $context = []) : ?array
     {
         return $this->extract('getTypes', [$class, $property, $context]);
     }
     /**
      * {@inheritdoc}
      */
-    public function isInitializable(string $class, string $property, array $context = []): ?bool
+    public function isInitializable(string $class, string $property, array $context = []) : ?bool
     {
         return $this->extract('isInitializable', [$class, $property, $context]);
     }
@@ -85,13 +85,13 @@ class PropertyInfoCacheExtractor implements PropertyInfoExtractorInterface, Prop
     private function extract(string $method, array $arguments)
     {
         try {
-            $serializedArguments = serialize($arguments);
+            $serializedArguments = \serialize($arguments);
         } catch (\Exception $exception) {
             // If arguments are not serializable, skip the cache
             return $this->propertyInfoExtractor->{$method}(...$arguments);
         }
         // Calling rawurlencode escapes special characters not allowed in PSR-6's keys
-        $key = rawurlencode($method . '.' . $serializedArguments);
+        $key = \rawurlencode($method . '.' . $serializedArguments);
         if (\array_key_exists($key, $this->arrayCache)) {
             return $this->arrayCache[$key];
         }

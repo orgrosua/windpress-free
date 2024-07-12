@@ -421,7 +421,7 @@ class Elements
     {
         // html5 element names are case insensitive. Forcing lowercase for the check.
         // Do we need this check or will all data passed here already be lowercase?
-        return isset(static::$html5[strtolower($name)]);
+        return isset(static::$html5[\strtolower($name)]);
     }
     /**
      * Test if an element name is a valid MathML presentation element.
@@ -489,7 +489,7 @@ class Elements
      */
     public static function normalizeSvgElement($name)
     {
-        $name = strtolower($name);
+        $name = \strtolower($name);
         if (isset(static::$svgCaseSensitiveElementMap[$name])) {
             $name = static::$svgCaseSensitiveElementMap[$name];
         }
@@ -504,7 +504,7 @@ class Elements
      */
     public static function normalizeSvgAttribute($name)
     {
-        $name = strtolower($name);
+        $name = \strtolower($name);
         if (isset(static::$svgCaseSensitiveAttributeMap[$name])) {
             $name = static::$svgCaseSensitiveAttributeMap[$name];
         }
@@ -520,7 +520,7 @@ class Elements
      */
     public static function normalizeMathMlAttribute($name)
     {
-        $name = strtolower($name);
+        $name = \strtolower($name);
         // Only one attribute has a mixed case form for MathML.
         if ('definitionurl' === $name) {
             $name = 'definitionURL';

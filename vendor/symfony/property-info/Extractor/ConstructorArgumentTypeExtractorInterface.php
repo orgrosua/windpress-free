@@ -27,5 +27,5 @@ interface ConstructorArgumentTypeExtractorInterface
      *
      * @internal
      */
-    public function getTypesFromConstructor(string $class, string $property): ?array;
+    public function getTypesFromConstructor(string $class, string $property) : ?array;
 }

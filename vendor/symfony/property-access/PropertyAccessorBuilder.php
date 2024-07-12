@@ -41,7 +41,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableMagicMethods(): self
+    public function enableMagicMethods() : self
     {
         $this->magicMethods = PropertyAccessor::MAGIC_GET | PropertyAccessor::MAGIC_SET | PropertyAccessor::MAGIC_CALL;
         return $this;
@@ -51,7 +51,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicMethods(): self
+    public function disableMagicMethods() : self
     {
         $this->magicMethods = PropertyAccessor::DISALLOW_MAGIC_METHODS;
         return $this;
@@ -69,7 +69,7 @@ class PropertyAccessorBuilder
     /**
      * Enables the use of "__get" by the PropertyAccessor.
      */
-    public function enableMagicGet(): self
+    public function enableMagicGet() : self
     {
         $this->magicMethods |= PropertyAccessor::MAGIC_GET;
         return $this;
@@ -79,7 +79,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableMagicSet(): self
+    public function enableMagicSet() : self
     {
         $this->magicMethods |= PropertyAccessor::MAGIC_SET;
         return $this;
@@ -99,7 +99,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicGet(): self
+    public function disableMagicGet() : self
     {
         $this->magicMethods &= ~PropertyAccessor::MAGIC_GET;
         return $this;
@@ -109,7 +109,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicSet(): self
+    public function disableMagicSet() : self
     {
         $this->magicMethods &= ~PropertyAccessor::MAGIC_SET;
         return $this;
@@ -124,14 +124,14 @@ class PropertyAccessorBuilder
     /**
      * @return bool whether the use of "__get" by the PropertyAccessor is enabled
      */
-    public function isMagicGetEnabled(): bool
+    public function isMagicGetEnabled() : bool
     {
         return $this->magicMethods & PropertyAccessor::MAGIC_GET;
     }
     /**
      * @return bool whether the use of "__set" by the PropertyAccessor is enabled
      */
-    public function isMagicSetEnabled(): bool
+    public function isMagicSetEnabled() : bool
     {
         return $this->magicMethods & PropertyAccessor::MAGIC_SET;
     }
@@ -226,7 +226,7 @@ class PropertyAccessorBuilder
         $this->readInfoExtractor = $readInfoExtractor;
         return $this;
     }
-    public function getReadInfoExtractor(): ?PropertyReadInfoExtractorInterface
+    public function getReadInfoExtractor() : ?PropertyReadInfoExtractorInterface
     {
         return $this->readInfoExtractor;
     }
@@ -238,7 +238,7 @@ class PropertyAccessorBuilder
         $this->writeInfoExtractor = $writeInfoExtractor;
         return $this;
     }
-    public function getWriteInfoExtractor(): ?PropertyWriteInfoExtractorInterface
+    public function getWriteInfoExtractor() : ?PropertyWriteInfoExtractorInterface
     {
         return $this->writeInfoExtractor;
     }

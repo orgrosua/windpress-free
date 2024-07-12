@@ -51,7 +51,7 @@ abstract class ServiceLocatorTestCase extends TestCase
     public function testGetDoesNotMemoize()
     {
         $i = 0;
-        $locator = $this->getServiceLocator(['foo' => function () use (&$i) {
+        $locator = $this->getServiceLocator(['foo' => function () use(&$i) {
             ++$i;
             return 'bar';
         }]);
@@ -65,7 +65,7 @@ abstract class ServiceLocatorTestCase extends TestCase
             $this->expectException(\WindPressPackages\Psr\Container\NotFoundExceptionInterface::class);
             $this->expectExceptionMessage('The service "foo" has a dependency on a non-existent service "bar". This locator only knows about the "foo" service.');
         }
-        $locator = $this->getServiceLocator(['foo' => function () use (&$locator) {
+        $locator = $this->getServiceLocator(['foo' => function () use(&$locator) {
             return $locator->get('bar');
         }]);
         $locator->get('foo');
@@ -74,11 +74,11 @@ abstract class ServiceLocatorTestCase extends TestCase
     {
         $this->expectException(\WindPressPackages\Psr\Container\ContainerExceptionInterface::class);
         $this->expectExceptionMessage('Circular reference detected for service "bar", path: "bar -> baz -> bar".');
-        $locator = $this->getServiceLocator(['foo' => function () use (&$locator) {
+        $locator = $this->getServiceLocator(['foo' => function () use(&$locator) {
             return $locator->get('bar');
-        }, 'bar' => function () use (&$locator) {
+        }, 'bar' => function () use(&$locator) {
             return $locator->get('baz');
-        }, 'baz' => function () use (&$locator) {
+        }, 'baz' => function () use(&$locator) {
             return $locator->get('bar');
         }]);
         $locator->get('foo');

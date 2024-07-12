@@ -69,8 +69,8 @@ class Section
      */
     public function open(?string $id)
     {
-        if (null === $id || null === $session = $this->get($id)) {
-            $session = $this->children[] = new self(microtime(\true) * 1000, $this->morePrecision);
+        if (null === $id || null === ($session = $this->get($id))) {
+            $session = $this->children[] = new self(\microtime(\true) * 1000, $this->morePrecision);
         }
         return $session;
     }
@@ -99,7 +99,7 @@ class Section
     public function startEvent(string $name, ?string $category)
     {
         if (!isset($this->events[$name])) {
-            $this->events[$name] = new StopwatchEvent($this->origin ?: (microtime(\true) * 1000), $category, $this->morePrecision, $name);
+            $this->events[$name] = new StopwatchEvent($this->origin ?: \microtime(\true) * 1000, $category, $this->morePrecision, $name);
         }
         return $this->events[$name]->start();
     }
@@ -122,7 +122,7 @@ class Section
     public function stopEvent(string $name)
     {
         if (!isset($this->events[$name])) {
-            throw new \LogicException(sprintf('Event "%s" is not started.', $name));
+            throw new \LogicException(\sprintf('Event "%s" is not started.', $name));
         }
         return $this->events[$name]->stop();
     }
@@ -147,7 +147,7 @@ class Section
     public function getEvent(string $name)
     {
         if (!isset($this->events[$name])) {
-            throw new \LogicException(sprintf('Event "%s" is not known.', $name));
+            throw new \LogicException(\sprintf('Event "%s" is not known.', $name));
         }
         return $this->events[$name];
     }

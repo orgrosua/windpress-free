@@ -18,7 +18,7 @@ class Leaker
         $property->setAccessible(\true);
         return $property->getValue($this->obj);
     }
-    public function __set(string $name, $value): void
+    public function __set(string $name, $value) : void
     {
         $property = $this->reflected->getProperty($name);
         $property->setAccessible(\true);

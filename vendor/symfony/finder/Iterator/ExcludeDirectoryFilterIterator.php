@@ -35,15 +35,15 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
         $this->isRecursive = $iterator instanceof \RecursiveIterator;
         $patterns = [];
         foreach ($directories as $directory) {
-            $directory = rtrim($directory, '/');
-            if (!$this->isRecursive || str_contains($directory, '/')) {
-                $patterns[] = preg_quote($directory, '#');
+            $directory = \rtrim($directory, '/');
+            if (!$this->isRecursive || \str_contains($directory, '/')) {
+                $patterns[] = \preg_quote($directory, '#');
             } else {
                 $this->excludedDirs[$directory] = \true;
             }
         }
         if ($patterns) {
-            $this->excludedPattern = '#(?:^|/)(?:' . implode('|', $patterns) . ')(?:/|$)#';
+            $this->excludedPattern = '#(?:^|/)(?:' . \implode('|', $patterns) . ')(?:/|$)#';
         }
         parent::__construct($iterator);
     }
@@ -60,8 +60,8 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
         }
         if ($this->excludedPattern) {
             $path = $this->isDir() ? $this->current()->getRelativePathname() : $this->current()->getRelativePath();
-            $path = str_replace('\\', '/', $path);
-            return !preg_match($this->excludedPattern, $path);
+            $path = \str_replace('\\', '/', $path);
+            return !\preg_match($this->excludedPattern, $path);
         }
         return \true;
     }

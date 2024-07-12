@@ -66,7 +66,7 @@ final class Plugin
      * into the static property. On subsequent runs, it returns the client existing
      * object stored in the static property.
      */
-    public static function get_instance(): self
+    public static function get_instance() : self
     {
         if (!isset(self::$instance)) {
             self::$instance = new self();
@@ -78,80 +78,80 @@ final class Plugin
      *
      * @link https://codex.wordpress.org/Plugin_API/Action_Reference
      */
-    public function boot(): void
+    public function boot() : void
     {
-        do_action('a!windpress/plugin:boot.start');
+        \do_action('a!windpress/plugin:boot.start');
         // (de)activation hooks.
-        register_activation_hook(WIND_PRESS::FILE, fn() => $this->activate_plugin());
-        register_deactivation_hook(WIND_PRESS::FILE, fn() => $this->deactivate_plugin());
+        \register_activation_hook(WIND_PRESS::FILE, fn() => $this->activate_plugin());
+        \register_deactivation_hook(WIND_PRESS::FILE, fn() => $this->deactivate_plugin());
         // upgrade hooks.
-        add_action('upgrader_process_complete', function (WP_Upgrader $wpUpgrader, array $options): void {
+        \add_action('upgrader_process_complete', function (WP_Upgrader $wpUpgrader, array $options) : void {
             if ($options['action'] === 'update' && $options['type'] === 'plugin') {
                 foreach ($options['plugins'] as $plugin) {
-                    if ($plugin === plugin_basename(WIND_PRESS::FILE)) {
+                    if ($plugin === \plugin_basename(WIND_PRESS::FILE)) {
                         $this->upgrade_plugin();
                     }
                 }
             }
         }, 10, 2);
         $this->maybe_update_plugin();
-        add_action('plugins_loaded', fn() => $this->plugins_loaded(), 9);
-        add_action('init', fn() => $this->init_plugin());
-        do_action('a!windpress/plugin:boot.end');
+        \add_action('plugins_loaded', fn() => $this->plugins_loaded(), 9);
+        \add_action('init', fn() => $this->init_plugin());
+        \do_action('a!windpress/plugin:boot.end');
     }
     /**
      * Handle the plugin's activation by (maybe) running database migrations
      * and initializing the plugin configuration.
      */
-    private function activate_plugin(): void
+    private function activate_plugin() : void
     {
-        do_action('a!windpress/plugin:activate_plugin.start');
-        update_option(WIND_PRESS::WP_OPTION . '_version', WIND_PRESS::VERSION);
+        \do_action('a!windpress/plugin:activate_plugin.start');
+        \update_option(WIND_PRESS::WP_OPTION . '_version', WIND_PRESS::VERSION);
         $this->maybe_embedded_license();
-        do_action('a!windpress/plugin:activate_plugin.end');
+        \do_action('a!windpress/plugin:activate_plugin.end');
     }
     /**
      * Handle plugin's deactivation by (maybe) cleaning up after ourselves.
      */
-    private function deactivate_plugin(): void
+    private function deactivate_plugin() : void
     {
-        do_action('a!windpress/plugin:deactivate_plugin.start');
-        do_action('a!windpress/plugin:deactivate_plugin.end');
+        \do_action('a!windpress/plugin:deactivate_plugin.start');
+        \do_action('a!windpress/plugin:deactivate_plugin.end');
     }
     /**
      * Handle the plugin's upgrade by (maybe) running database migrations.
      */
-    private function upgrade_plugin(): void
+    private function upgrade_plugin() : void
     {
-        do_action('a!windpress/plugin:upgrade_plugin.start');
-        do_action('a!windpress/plugin:upgrade_plugin.end');
+        \do_action('a!windpress/plugin:upgrade_plugin.start');
+        \do_action('a!windpress/plugin:upgrade_plugin.end');
     }
     /**
      * Initialize the plugin on WordPress' `init` hook.
      */
-    private function init_plugin(): void
+    private function init_plugin() : void
     {
-        do_action('a!windpress/plugin:init_plugin.start');
+        \do_action('a!windpress/plugin:init_plugin.start');
         // Load translations.
-        load_plugin_textdomain(WIND_PRESS::TEXT_DOMAIN, \false, dirname(plugin_basename(WIND_PRESS::FILE)) . '/languages/');
+        \load_plugin_textdomain(WIND_PRESS::TEXT_DOMAIN, \false, \dirname(\plugin_basename(WIND_PRESS::FILE)) . '/languages/');
         new ApiRouter();
         Runtime::get_instance()->init();
         // Instantiate the AdminPage class.
         new AdminPage();
-        do_action('a!windpress/plugin:init_plugin.end');
+        \do_action('a!windpress/plugin:init_plugin.end');
     }
     /**
      * Initialize the plugin on WordPress' `plugins_loaded` hook.
      */
-    private function plugins_loaded(): void
+    private function plugins_loaded() : void
     {
-        do_action('a!windpress/plugin:plugins_loaded.start');
+        \do_action('a!windpress/plugin:plugins_loaded.start');
         IntegrationLoader::get_instance()->register_integrations();
-        if (is_admin()) {
-            add_action('admin_notices', static fn() => Notice::admin_notices());
-            add_filter('plugin_action_links_' . plugin_basename(WIND_PRESS::FILE), fn($links) => $this->plugin_action_links($links));
+        if (\is_admin()) {
+            \add_action('admin_notices', static fn() => Notice::admin_notices());
+            \add_filter('plugin_action_links_' . \plugin_basename(WIND_PRESS::FILE), fn($links) => $this->plugin_action_links($links));
         }
-        do_action('a!windpress/plugin:plugins_loaded.end');
+        \do_action('a!windpress/plugin:plugins_loaded.end');
     }
     /**
      * Add plugin action links.
@@ -161,10 +161,10 @@ final class Plugin
      *
      * @todo Add settings link when the settings page is implemented.
      */
-    private function plugin_action_links(array $links): array
+    private function plugin_action_links(array $links) : array
     {
         $base_url = AdminPage::get_page_url();
-        array_unshift($links, sprintf('<a href="%s">%s</a>', esc_url(sprintf('%s#/settings', $base_url)), esc_html__('Settings', 'windpress')));
+        \array_unshift($links, \sprintf('<a href="%s">%s</a>', \esc_url(\sprintf('%s#/settings', $base_url)), \esc_html__('Settings', 'windpress')));
         return $links;
     }
     /**
@@ -175,37 +175,37 @@ final class Plugin
      */
     public function maybe_update_plugin()
     {
-        if (!class_exists(PluginUpdater::class)) {
+        if (!\class_exists(PluginUpdater::class)) {
             return null;
         }
         if ($this->plugin_updater instanceof \WindPressPackages\EDD_SL\PluginUpdater) {
             return $this->plugin_updater;
         }
-        $license = get_option(WIND_PRESS::WP_OPTION . '_license', ['key' => '', 'opt_in_pre_release' => \false]);
-        $this->plugin_updater = new PluginUpdater(WIND_PRESS::WP_OPTION, ['version' => WIND_PRESS::VERSION, 'license' => $license['key'] ? trim($license['key']) : \false, 'beta' => $license['opt_in_pre_release'], 'plugin_file' => WIND_PRESS::FILE, 'item_id' => WIND_PRESS::EDD_STORE['item_id'], 'store_url' => WIND_PRESS::EDD_STORE['store_url'], 'author' => WIND_PRESS::EDD_STORE['author']]);
+        $license = \get_option(WIND_PRESS::WP_OPTION . '_license', ['key' => '', 'opt_in_pre_release' => \false]);
+        $this->plugin_updater = new PluginUpdater(WIND_PRESS::WP_OPTION, ['version' => WIND_PRESS::VERSION, 'license' => $license['key'] ? \trim($license['key']) : \false, 'beta' => $license['opt_in_pre_release'], 'plugin_file' => WIND_PRESS::FILE, 'item_id' => WIND_PRESS::EDD_STORE['item_id'], 'store_url' => WIND_PRESS::EDD_STORE['store_url'], 'author' => WIND_PRESS::EDD_STORE['author']]);
         return $this->plugin_updater;
     }
     /**
      * Check if the plugin distributed with an embedded license and activate the license.
      * Pro version only.
      */
-    private function maybe_embedded_license(): void
+    private function maybe_embedded_license() : void
     {
-        if (!class_exists(PluginUpdater::class)) {
+        if (!\class_exists(PluginUpdater::class)) {
             return;
         }
-        $license_file = dirname(WIND_PRESS::FILE) . '/license-data.php';
-        if (!file_exists($license_file)) {
+        $license_file = \dirname(WIND_PRESS::FILE) . '/license-data.php';
+        if (!\file_exists($license_file)) {
             return;
         }
         require_once $license_file;
         $const_name = 'ROSUA_EMBEDDED_LICENSE_KEY_' . WIND_PRESS::EDD_STORE['item_id'];
-        if (!defined($const_name)) {
+        if (!\defined($const_name)) {
             return;
         }
-        $license_key = constant($const_name);
-        update_option(WIND_PRESS::WP_OPTION . '_license', ['key' => $license_key, 'opt_in_pre_release' => \false]);
-        unlink($license_file);
+        $license_key = \constant($const_name);
+        \update_option(WIND_PRESS::WP_OPTION . '_license', ['key' => $license_key, 'opt_in_pre_release' => \false]);
+        \unlink($license_file);
         // activate the license.
         $this->maybe_update_plugin()->activate($license_key);
     }

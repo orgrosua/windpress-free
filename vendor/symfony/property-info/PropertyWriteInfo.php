@@ -41,62 +41,62 @@ final class PropertyWriteInfo
         $this->visibility = $visibility;
         $this->static = $static;
     }
-    public function getType(): string
+    public function getType() : string
     {
         return $this->type;
     }
-    public function getName(): string
+    public function getName() : string
     {
         if (null === $this->name) {
             throw new \LogicException("Calling getName() when having a mutator of type {$this->type} is not tolerated.");
         }
         return $this->name;
     }
-    public function setAdderInfo(self $adderInfo): void
+    public function setAdderInfo(self $adderInfo) : void
     {
         $this->adderInfo = $adderInfo;
     }
-    public function getAdderInfo(): self
+    public function getAdderInfo() : self
     {
         if (null === $this->adderInfo) {
             throw new \LogicException("Calling getAdderInfo() when having a mutator of type {$this->type} is not tolerated.");
         }
         return $this->adderInfo;
     }
-    public function setRemoverInfo(self $removerInfo): void
+    public function setRemoverInfo(self $removerInfo) : void
     {
         $this->removerInfo = $removerInfo;
     }
-    public function getRemoverInfo(): self
+    public function getRemoverInfo() : self
     {
         if (null === $this->removerInfo) {
             throw new \LogicException("Calling getRemoverInfo() when having a mutator of type {$this->type} is not tolerated.");
         }
         return $this->removerInfo;
     }
-    public function getVisibility(): string
+    public function getVisibility() : string
     {
         if (null === $this->visibility) {
             throw new \LogicException("Calling getVisibility() when having a mutator of type {$this->type} is not tolerated.");
         }
         return $this->visibility;
     }
-    public function isStatic(): bool
+    public function isStatic() : bool
     {
         if (null === $this->static) {
             throw new \LogicException("Calling isStatic() when having a mutator of type {$this->type} is not tolerated.");
         }
         return $this->static;
     }
-    public function setErrors(array $errors): void
+    public function setErrors(array $errors) : void
     {
         $this->errors = $errors;
     }
-    public function getErrors(): array
+    public function getErrors() : array
     {
         return $this->errors;
     }
-    public function hasErrors(): bool
+    public function hasErrors() : bool
     {
         return (bool) \count($this->errors);
     }

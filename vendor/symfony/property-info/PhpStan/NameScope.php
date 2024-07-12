@@ -31,26 +31,26 @@ final class NameScope
         $this->namespace = $namespace;
         $this->uses = $uses;
     }
-    public function resolveStringName(string $name): string
+    public function resolveStringName(string $name) : string
     {
-        if (0 === strpos($name, '\\')) {
-            return ltrim($name, '\\');
+        if (0 === \strpos($name, '\\')) {
+            return \ltrim($name, '\\');
         }
-        $nameParts = explode('\\', $name);
+        $nameParts = \explode('\\', $name);
         $firstNamePart = $nameParts[0];
         if (isset($this->uses[$firstNamePart])) {
             if (1 === \count($nameParts)) {
                 return $this->uses[$firstNamePart];
             }
-            array_shift($nameParts);
-            return sprintf('%s\%s', $this->uses[$firstNamePart], implode('\\', $nameParts));
+            \array_shift($nameParts);
+            return \sprintf('%s\\%s', $this->uses[$firstNamePart], \implode('\\', $nameParts));
         }
         if (null !== $this->namespace) {
-            return sprintf('%s\%s', $this->namespace, $name);
+            return \sprintf('%s\\%s', $this->namespace, $name);
         }
         return $name;
     }
-    public function resolveRootClass(): string
+    public function resolveRootClass() : string
     {
         return $this->resolveStringName($this->calledClassName);
     }

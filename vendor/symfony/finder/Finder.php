@@ -162,7 +162,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function name($patterns)
     {
-        $this->names = array_merge($this->names, (array) $patterns);
+        $this->names = \array_merge($this->names, (array) $patterns);
         return $this;
     }
     /**
@@ -176,7 +176,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function notName($patterns)
     {
-        $this->notNames = array_merge($this->notNames, (array) $patterns);
+        $this->notNames = \array_merge($this->notNames, (array) $patterns);
         return $this;
     }
     /**
@@ -196,7 +196,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function contains($patterns)
     {
-        $this->contains = array_merge($this->contains, (array) $patterns);
+        $this->contains = \array_merge($this->contains, (array) $patterns);
         return $this;
     }
     /**
@@ -216,7 +216,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function notContains($patterns)
     {
-        $this->notContains = array_merge($this->notContains, (array) $patterns);
+        $this->notContains = \array_merge($this->notContains, (array) $patterns);
         return $this;
     }
     /**
@@ -238,7 +238,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function path($patterns)
     {
-        $this->paths = array_merge($this->paths, (array) $patterns);
+        $this->paths = \array_merge($this->paths, (array) $patterns);
         return $this;
     }
     /**
@@ -260,7 +260,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function notPath($patterns)
     {
-        $this->notPaths = array_merge($this->notPaths, (array) $patterns);
+        $this->notPaths = \array_merge($this->notPaths, (array) $patterns);
         return $this;
     }
     /**
@@ -300,7 +300,7 @@ class Finder implements \IteratorAggregate, \Countable
      */
     public function exclude($dirs)
     {
-        $this->exclude = array_merge($this->exclude, (array) $dirs);
+        $this->exclude = \array_merge($this->exclude, (array) $dirs);
         return $this;
     }
     /**
@@ -367,7 +367,7 @@ class Finder implements \IteratorAggregate, \Countable
         foreach ((array) $pattern as $p) {
             self::$vcsPatterns[] = $p;
         }
-        self::$vcsPatterns = array_unique(self::$vcsPatterns);
+        self::$vcsPatterns = \array_unique(self::$vcsPatterns);
     }
     /**
      * Sorts files and directories by an anonymous function.
@@ -523,16 +523,16 @@ class Finder implements \IteratorAggregate, \Countable
     {
         $resolvedDirs = [];
         foreach ((array) $dirs as $dir) {
-            if (is_dir($dir)) {
+            if (\is_dir($dir)) {
                 $resolvedDirs[] = [$this->normalizeDir($dir)];
-            } elseif ($glob = glob($dir, (\defined('GLOB_BRACE') ? \GLOB_BRACE : 0) | \GLOB_ONLYDIR | \GLOB_NOSORT)) {
-                sort($glob);
-                $resolvedDirs[] = array_map([$this, 'normalizeDir'], $glob);
+            } elseif ($glob = \glob($dir, (\defined('GLOB_BRACE') ? \GLOB_BRACE : 0) | \GLOB_ONLYDIR | \GLOB_NOSORT)) {
+                \sort($glob);
+                $resolvedDirs[] = \array_map([$this, 'normalizeDir'], $glob);
             } else {
-                throw new DirectoryNotFoundException(sprintf('The "%s" directory does not exist.', $dir));
+                throw new DirectoryNotFoundException(\sprintf('The "%s" directory does not exist.', $dir));
             }
         }
-        $this->dirs = array_merge($this->dirs, ...$resolvedDirs);
+        $this->dirs = \array_merge($this->dirs, ...$resolvedDirs);
         return $this;
     }
     /**
@@ -559,7 +559,7 @@ class Finder implements \IteratorAggregate, \Countable
         }
         $iterator = new \AppendIterator();
         foreach ($this->dirs as $dir) {
-            $iterator->append(new \IteratorIterator(new LazyIterator(function () use ($dir) {
+            $iterator->append(new \IteratorIterator(new LazyIterator(function () use($dir) {
                 return $this->searchInDirectory($dir);
             })));
         }
@@ -586,10 +586,10 @@ class Finder implements \IteratorAggregate, \Countable
             $this->iterators[] = $iterator->getIterator();
         } elseif ($iterator instanceof \Iterator) {
             $this->iterators[] = $iterator;
-        } elseif (is_iterable($iterator)) {
+        } elseif (\is_iterable($iterator)) {
             $it = new \ArrayIterator();
             foreach ($iterator as $file) {
-                $file = ($file instanceof \SplFileInfo) ? $file : new \SplFileInfo($file);
+                $file = $file instanceof \SplFileInfo ? $file : new \SplFileInfo($file);
                 $it[$file->getPathname()] = $file;
             }
             $this->iterators[] = $it;
@@ -618,17 +618,17 @@ class Finder implements \IteratorAggregate, \Countable
     #[\ReturnTypeWillChange]
     public function count()
     {
-        return iterator_count($this->getIterator());
+        return \iterator_count($this->getIterator());
     }
-    private function searchInDirectory(string $dir): \Iterator
+    private function searchInDirectory(string $dir) : \Iterator
     {
         $exclude = $this->exclude;
         $notPaths = $this->notPaths;
         if (static::IGNORE_VCS_FILES === (static::IGNORE_VCS_FILES & $this->ignore)) {
-            $exclude = array_merge($exclude, self::$vcsPatterns);
+            $exclude = \array_merge($exclude, self::$vcsPatterns);
         }
         if (static::IGNORE_DOT_FILES === (static::IGNORE_DOT_FILES & $this->ignore)) {
-            $notPaths[] = '#(^|/)\..+(/|$)#';
+            $notPaths[] = '#(^|/)\\..+(/|$)#';
         }
         $minDepth = 0;
         $maxDepth = \PHP_INT_MAX;
@@ -693,13 +693,13 @@ class Finder implements \IteratorAggregate, \Countable
      *
      * Excluding: (s)ftp:// or ssh2.(s)ftp:// wrapper
      */
-    private function normalizeDir(string $dir): string
+    private function normalizeDir(string $dir) : string
     {
         if ('/' === $dir) {
             return $dir;
         }
-        $dir = rtrim($dir, '/' . \DIRECTORY_SEPARATOR);
-        if (preg_match('#^(ssh2\.)?s?ftp://#', $dir)) {
+        $dir = \rtrim($dir, '/' . \DIRECTORY_SEPARATOR);
+        if (\preg_match('#^(ssh2\\.)?s?ftp://#', $dir)) {
             $dir .= '/';
         }
         return $dir;

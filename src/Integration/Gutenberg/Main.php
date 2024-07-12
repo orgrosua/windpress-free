@@ -23,28 +23,28 @@ class Main implements IntegrationInterface
     public function __construct()
     {
         return;
-        add_filter('f!windpress/core/cache:compile.providers', fn(array $providers): array => $this->register_provider($providers));
+        \add_filter('f!windpress/core/cache:compile.providers', fn(array $providers): array => $this->register_provider($providers));
         if ($this->is_enabled()) {
-            add_action('enqueue_block_editor_assets', fn() => $this->enqueue_block_editor_assets());
+            \add_action('enqueue_block_editor_assets', fn() => $this->enqueue_block_editor_assets());
         }
     }
-    public function get_name(): string
+    public function get_name() : string
     {
         return 'gutenberg';
     }
-    public function is_enabled(): bool
+    public function is_enabled() : bool
     {
-        return (bool) apply_filters('f!windpress/integration/gutenberg:enabled', Config::get(sprintf('integration.%s.enabled', $this->get_name()), \true));
+        return (bool) \apply_filters('f!windpress/integration/gutenberg:enabled', Config::get(\sprintf('integration.%s.enabled', $this->get_name()), \true));
     }
-    public function register_provider(array $providers): array
+    public function register_provider(array $providers) : array
     {
         $providers[] = ['id' => $this->get_name(), 'name' => 'Gutenberg', 'description' => 'Gutenberg integration', 'callback' => \WindPress\WindPress\Integration\Gutenberg\Compile::class, 'enabled' => $this->is_enabled()];
         return $providers;
     }
     public function enqueue_block_editor_assets()
     {
-        $screen = get_current_screen();
-        if (is_admin() && $screen->is_block_editor()) {
+        $screen = \get_current_screen();
+        if (\is_admin() && $screen->is_block_editor()) {
             // add_action('admin_head', fn () => $this->admin_head(), 1_000_001);
         }
     }

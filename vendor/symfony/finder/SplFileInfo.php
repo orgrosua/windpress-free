@@ -52,10 +52,10 @@ class SplFileInfo extends \SplFileInfo
     {
         return $this->relativePathname;
     }
-    public function getFilenameWithoutExtension(): string
+    public function getFilenameWithoutExtension() : string
     {
         $filename = $this->getFilename();
-        return pathinfo($filename, \PATHINFO_FILENAME);
+        return \pathinfo($filename, \PATHINFO_FILENAME);
     }
     /**
      * Returns the contents of the file.
@@ -66,13 +66,13 @@ class SplFileInfo extends \SplFileInfo
      */
     public function getContents()
     {
-        set_error_handler(function ($type, $msg) use (&$error) {
+        \set_error_handler(function ($type, $msg) use(&$error) {
             $error = $msg;
         });
         try {
-            $content = file_get_contents($this->getPathname());
+            $content = \file_get_contents($this->getPathname());
         } finally {
-            restore_error_handler();
+            \restore_error_handler();
         }
         if (\false === $content) {
             throw new \RuntimeException($error);

@@ -20,5 +20,5 @@ interface PropertyInitializableExtractorInterface
     /**
      * Is the property initializable? Returns true if a constructor's parameter matches the given property name.
      */
-    public function isInitializable(string $class, string $property, array $context = []): ?bool;
+    public function isInitializable(string $class, string $property, array $context = []) : ?bool;
 }

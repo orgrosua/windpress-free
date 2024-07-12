@@ -30,7 +30,7 @@ class Requirement
     /**
      * Get the status of the requirements check.
      */
-    public function met(): bool
+    public function met() : bool
     {
         return $this->doesNotMeet === [];
     }
@@ -40,10 +40,10 @@ class Requirement
      *
      * @param string $minVersion The minimum PHP version required.
      */
-    public function php(string $minVersion): self
+    public function php(string $minVersion) : self
     {
-        if (version_compare(\PHP_VERSION, $minVersion, '<')) {
-            $this->doesNotMeet[] = sprintf('<strong>%s</strong> <code>%s</code> or higher', 'PHP', $minVersion);
+        if (\version_compare(\PHP_VERSION, $minVersion, '<')) {
+            $this->doesNotMeet[] = \sprintf('<strong>%s</strong> <code>%s</code> or higher', 'PHP', $minVersion);
         }
         return $this;
     }
@@ -53,10 +53,10 @@ class Requirement
      *
      * @param string $minVersion The minimum WordPress version required.
      */
-    public function wp(string $minVersion): self
+    public function wp(string $minVersion) : self
     {
-        if (version_compare(get_bloginfo('version'), $minVersion, '<')) {
-            $this->doesNotMeet[] = sprintf('<strong>%s</strong> <code>%s</code> or higher', 'WordPress', $minVersion);
+        if (\version_compare(\get_bloginfo('version'), $minVersion, '<')) {
+            $this->doesNotMeet[] = \sprintf('<strong>%s</strong> <code>%s</code> or higher', 'WordPress', $minVersion);
         }
         return $this;
     }
@@ -65,9 +65,9 @@ class Requirement
      *
      * @param bool $must Whether the plugin must be running on multisite.
      */
-    public function multisite(bool $must): self
+    public function multisite(bool $must) : self
     {
-        if ($must && !is_multisite()) {
+        if ($must && !\is_multisite()) {
             $this->doesNotMeet[] = 'WordPress Multisite';
         }
         return $this;
@@ -77,20 +77,20 @@ class Requirement
      *
      * @param list<string|array{0: string, 1: string}> $plugins The plugins to check. Use the plugin file path, e.g. `windpress/windpress.php`.
      */
-    public function plugins(array $plugins): self
+    public function plugins(array $plugins) : self
     {
         foreach ($plugins as $k => $v) {
-            if (is_int($k)) {
-                if (!is_plugin_active($v)) {
-                    $pluginName = get_plugin_data(\WP_PLUGIN_DIR . '/' . $v)['Name'];
-                    $this->doesNotMeet[] = sprintf('<strong>%s</strong>', $pluginName);
+            if (\is_int($k)) {
+                if (!\is_plugin_active($v)) {
+                    $pluginName = \get_plugin_data(\WP_PLUGIN_DIR . '/' . $v)['Name'];
+                    $this->doesNotMeet[] = \sprintf('<strong>%s</strong>', $pluginName);
                 }
             } else {
-                $pluginName = get_plugin_data(\WP_PLUGIN_DIR . '/' . $k)['Name'];
-                if (!is_plugin_active($k)) {
-                    $this->doesNotMeet[] = sprintf('<strong>%s</strong>', $pluginName);
-                } elseif (version_compare(get_plugin_data(\WP_PLUGIN_DIR . '/' . $k)['Version'], $v, '<')) {
-                    $this->doesNotMeet[] = sprintf('<strong>%s</strong> <code>%s</code> or higher', $pluginName, $v);
+                $pluginName = \get_plugin_data(\WP_PLUGIN_DIR . '/' . $k)['Name'];
+                if (!\is_plugin_active($k)) {
+                    $this->doesNotMeet[] = \sprintf('<strong>%s</strong>', $pluginName);
+                } elseif (\version_compare(\get_plugin_data(\WP_PLUGIN_DIR . '/' . $k)['Version'], $v, '<')) {
+                    $this->doesNotMeet[] = \sprintf('<strong>%s</strong> <code>%s</code> or higher', $pluginName, $v);
                 }
             }
         }
@@ -102,28 +102,28 @@ class Requirement
      * @param string $parentTheme The parent theme to check.
      * @param string|null $version The minimum version of the parent theme.
      */
-    public function theme(string $parentTheme, ?string $version = null): self
+    public function theme(string $parentTheme, ?string $version = null) : self
     {
-        $theme = wp_get_theme();
-        if (get_template() !== $parentTheme) {
-            $this->doesNotMeet[] = sprintf('<strong>%s</strong>', $parentTheme);
-        } elseif ($version && version_compare(($theme->parent() ?: $theme)->get('Version'), $version, '<')) {
-            $this->doesNotMeet[] = sprintf('<strong>%s</strong> <code>%s</code> or higher', $parentTheme, $version);
+        $theme = \wp_get_theme();
+        if (\get_template() !== $parentTheme) {
+            $this->doesNotMeet[] = \sprintf('<strong>%s</strong>', $parentTheme);
+        } elseif ($version && \version_compare(($theme->parent() ?: $theme)->get('Version'), $version, '<')) {
+            $this->doesNotMeet[] = \sprintf('<strong>%s</strong> <code>%s</code> or higher', $parentTheme, $version);
         }
         return $this;
     }
     public function printNotice()
     {
-        $name = esc_html(get_plugin_data(WIND_PRESS::FILE, \false)['Name']);
-        if (!current_user_can('activate_plugins')) {
+        $name = \esc_html(\get_plugin_data(WIND_PRESS::FILE, \false)['Name']);
+        if (!\current_user_can('activate_plugins')) {
             return;
         }
-        $notice = sprintf(
+        $notice = \sprintf(
             /* translators: 1: plugin name, 2: list of requirements */
-            esc_html__('The %1$s plugin minimum requirements are not met:', 'windpress'),
+            \esc_html__('The %1$s plugin minimum requirements are not met:', 'windpress'),
             '<strong>' . $name . '</strong>'
         );
-        $requirements = (count($this->doesNotMeet) === 0) ? '' : ('<ul><li>' . implode('</li><li>', $this->doesNotMeet) . '</li></ul>');
-        printf('<div class="notice notice-error"><p>%1$s</p>%2$s</div>', $notice, $requirements);
+        $requirements = \count($this->doesNotMeet) === 0 ? '' : '<ul><li>' . \implode('</li><li>', $this->doesNotMeet) . '</li></ul>';
+        \printf('<div class="notice notice-error"><p>%1$s</p>%2$s</div>', $notice, $requirements);
     }
 }

@@ -52,14 +52,14 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
     {
         // should at least not match one rule to exclude
         foreach ($this->noMatchRegexps as $regex) {
-            if (preg_match($regex, $string)) {
+            if (\preg_match($regex, $string)) {
                 return \false;
             }
         }
         // should at least match one rule
         if ($this->matchRegexps) {
             foreach ($this->matchRegexps as $regex) {
-                if (preg_match($regex, $string)) {
+                if (\preg_match($regex, $string)) {
                     return \true;
                 }
             }
@@ -79,11 +79,11 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
         if (\PHP_VERSION_ID >= 80200) {
             $availableModifiers .= 'n';
         }
-        if (preg_match('/^(.{3,}?)[' . $availableModifiers . ']*$/', $str, $m)) {
-            $start = substr($m[1], 0, 1);
-            $end = substr($m[1], -1);
+        if (\preg_match('/^(.{3,}?)[' . $availableModifiers . ']*$/', $str, $m)) {
+            $start = \substr($m[1], 0, 1);
+            $end = \substr($m[1], -1);
             if ($start === $end) {
-                return !preg_match('/[*?[:alnum:] \\\\]/', $start);
+                return !\preg_match('/[*?[:alnum:] \\\\]/', $start);
             }
             foreach ([['{', '}'], ['(', ')'], ['[', ']'], ['<', '>']] as $delimiters) {
                 if ($start === $delimiters[0] && $end === $delimiters[1]) {
@@ -98,5 +98,5 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
      *
      * @return string
      */
-    abstract protected function toRegex(string $str);
+    protected abstract function toRegex(string $str);
 }

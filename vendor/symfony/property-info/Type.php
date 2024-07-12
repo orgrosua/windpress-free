@@ -58,7 +58,7 @@ class Type
     public function __construct(string $builtinType, bool $nullable = \false, ?string $class = null, bool $collection = \false, $collectionKeyType = null, $collectionValueType = null)
     {
         if (!\in_array($builtinType, self::$builtinTypes)) {
-            throw new \InvalidArgumentException(sprintf('"%s" is not a valid PHP type.', $builtinType));
+            throw new \InvalidArgumentException(\sprintf('"%s" is not a valid PHP type.', $builtinType));
         }
         $this->builtinType = $builtinType;
         $this->nullable = $nullable;
@@ -67,18 +67,18 @@ class Type
         $this->collectionKeyType = $this->validateCollectionArgument($collectionKeyType, 5, '$collectionKeyType') ?? [];
         $this->collectionValueType = $this->validateCollectionArgument($collectionValueType, 6, '$collectionValueType') ?? [];
     }
-    private function validateCollectionArgument($collectionArgument, int $argumentIndex, string $argumentName): ?array
+    private function validateCollectionArgument($collectionArgument, int $argumentIndex, string $argumentName) : ?array
     {
         if (null === $collectionArgument) {
             return null;
         }
         if (!\is_array($collectionArgument) && !$collectionArgument instanceof self) {
-            throw new \TypeError(sprintf('"%s()": Argument #%d (%s) must be of type "%s[]", "%s" or "null", "%s" given.', __METHOD__, $argumentIndex, $argumentName, self::class, self::class, get_debug_type($collectionArgument)));
+            throw new \TypeError(\sprintf('"%s()": Argument #%d (%s) must be of type "%s[]", "%s" or "null", "%s" given.', __METHOD__, $argumentIndex, $argumentName, self::class, self::class, \get_debug_type($collectionArgument)));
         }
         if (\is_array($collectionArgument)) {
             foreach ($collectionArgument as $type) {
                 if (!$type instanceof self) {
-                    throw new \TypeError(sprintf('"%s()": Argument #%d (%s) must be of type "%s[]", "%s" or "null", array value "%s" given.', __METHOD__, $argumentIndex, $argumentName, self::class, self::class, get_debug_type($collectionArgument)));
+                    throw new \TypeError(\sprintf('"%s()": Argument #%d (%s) must be of type "%s[]", "%s" or "null", array value "%s" given.', __METHOD__, $argumentIndex, $argumentName, self::class, self::class, \get_debug_type($collectionArgument)));
                 }
             }
             return $collectionArgument;
@@ -90,11 +90,11 @@ class Type
      *
      * Can be bool, int, float, string, array, object, resource, null, callback or iterable.
      */
-    public function getBuiltinType(): string
+    public function getBuiltinType() : string
     {
         return $this->builtinType;
     }
-    public function isNullable(): bool
+    public function isNullable() : bool
     {
         return $this->nullable;
     }
@@ -103,11 +103,11 @@ class Type
      *
      * Only applicable if the built-in type is object.
      */
-    public function getClassName(): ?string
+    public function getClassName() : ?string
     {
         return $this->class;
     }
-    public function isCollection(): bool
+    public function isCollection() : bool
     {
         return $this->collection;
     }
@@ -118,7 +118,7 @@ class Type
      *
      * @deprecated since Symfony 5.3, use "getCollectionKeyTypes()" instead
      */
-    public function getCollectionKeyType(): ?self
+    public function getCollectionKeyType() : ?self
     {
         trigger_deprecation('symfony/property-info', '5.3', 'The "%s()" method is deprecated, use "getCollectionKeyTypes()" instead.', __METHOD__);
         $type = $this->getCollectionKeyTypes();
@@ -137,7 +137,7 @@ class Type
      *
      * @return Type[]
      */
-    public function getCollectionKeyTypes(): array
+    public function getCollectionKeyTypes() : array
     {
         return $this->collectionKeyType;
     }
@@ -148,7 +148,7 @@ class Type
      *
      * @deprecated since Symfony 5.3, use "getCollectionValueTypes()" instead
      */
-    public function getCollectionValueType(): ?self
+    public function getCollectionValueType() : ?self
     {
         trigger_deprecation('symfony/property-info', '5.3', 'The "%s()" method is deprecated, use "getCollectionValueTypes()" instead.', __METHOD__);
         return $this->getCollectionValueTypes()[0] ?? null;
@@ -160,7 +160,7 @@ class Type
      *
      * @return Type[]
      */
-    public function getCollectionValueTypes(): array
+    public function getCollectionValueTypes() : array
     {
         return $this->collectionValueType;
     }

@@ -46,8 +46,8 @@ class Config
      */
     public static function get($path, $defaultValue = null)
     {
-        $options = json_decode(get_option(WIND_PRESS::WP_OPTION . '_options', '{}'), null, 512, \JSON_THROW_ON_ERROR);
-        $options = apply_filters('f!windpress/utlis/config:options', $options);
+        $options = \json_decode(\get_option(WIND_PRESS::WP_OPTION . '_options', '{}'), null, 512, \JSON_THROW_ON_ERROR);
+        $options = \apply_filters('f!windpress/utlis/config:options', $options);
         try {
             return self::propertyAccessor()->getValue($options, $path);
         } catch (Exception $exception) {
@@ -66,14 +66,14 @@ class Config
      */
     public static function set($path, $value)
     {
-        $options = json_decode(get_option(WIND_PRESS::WP_OPTION . '_options', '{}'), null, 512, \JSON_THROW_ON_ERROR);
-        $options = apply_filters('f!windpress/utlis/config:options', $options);
+        $options = \json_decode(\get_option(WIND_PRESS::WP_OPTION . '_options', '{}'), null, 512, \JSON_THROW_ON_ERROR);
+        $options = \apply_filters('f!windpress/utlis/config:options', $options);
         if (self::propertyAccessor()->isWritable($options, $path)) {
             self::propertyAccessor()->setValue($options, $path, $value);
         } else {
             self::data_set($options, $path, $value);
         }
-        update_option(WIND_PRESS::WP_OPTION . '_options', json_encode($options, \JSON_THROW_ON_ERROR));
+        \update_option(WIND_PRESS::WP_OPTION . '_options', \json_encode($options, \JSON_THROW_ON_ERROR));
     }
     /**
      * Set an item on an array or object using dot notation.
@@ -88,8 +88,8 @@ class Config
      */
     public static function data_set(&$target, $key, $value, $overwrite = \true)
     {
-        $segments = is_array($key) ? $key : explode('.', $key);
-        if (($segment = array_shift($segments)) === '*') {
+        $segments = \is_array($key) ? $key : \explode('.', $key);
+        if (($segment = \array_shift($segments)) === '*') {
             if (!self::array_accessible($target)) {
                 $target = [];
             }
@@ -111,7 +111,7 @@ class Config
             } elseif ($overwrite || !self::array_exists($target, $segment)) {
                 $target[$segment] = $value;
             }
-        } elseif (is_object($target)) {
+        } elseif (\is_object($target)) {
             if ($segments) {
                 if (!isset($target->{$segment})) {
                     $target->{$segment} = [];
@@ -144,10 +144,10 @@ class Config
         if ($array instanceof ArrayAccess) {
             return $array->offsetExists($key);
         }
-        if (is_float($key)) {
+        if (\is_float($key)) {
             $key = (string) $key;
         }
-        return array_key_exists($key, $array);
+        return \array_key_exists($key, $array);
     }
     /**
      * Determine whether the given value is array accessible.
@@ -159,6 +159,6 @@ class Config
      */
     public static function array_accessible($value)
     {
-        return is_array($value) || $value instanceof ArrayAccess;
+        return \is_array($value) || $value instanceof ArrayAccess;
     }
 }
