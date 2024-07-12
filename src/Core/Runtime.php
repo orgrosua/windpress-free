@@ -97,13 +97,14 @@ class Runtime
         }
         $handle = WIND_PRESS::WP_OPTION . '-cached';
         if (Config::get('performance.cache.inline_load', \false)) {
-            $css = \file_get_contents(\WindPress\WindPress\Core\Cache::get_cache_path(\WindPress\WindPress\Core\Cache::CSS_CACHE_FILE));
-            if ($css === \false) {
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file
+            $css_clean = \file_get_contents(\WindPress\WindPress\Core\Cache::get_cache_path(\WindPress\WindPress\Core\Cache::CSS_CACHE_FILE));
+            if ($css_clean === \false) {
                 return;
             }
             // CSS content are processed by lightningcss library and it's safe to be printed directly.
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo \sprintf("<style id=\"%s-css\">\n%s\n</style>", $handle, \strip_tags($css));
+            echo \sprintf("<style id=\"%s-css\">\n%s\n</style>", \esc_attr($handle), \wp_strip_all_tags($css_clean));
         } else {
             $version = (string) \filemtime(\WindPress\WindPress\Core\Cache::get_cache_path(\WindPress\WindPress\Core\Cache::CSS_CACHE_FILE));
             \wp_register_style($handle, \WindPress\WindPress\Core\Cache::get_cache_url(\WindPress\WindPress\Core\Cache::CSS_CACHE_FILE), [], $version);
@@ -112,11 +113,12 @@ class Runtime
     }
     public function enqueue_play_cdn($display = \true)
     {
-        // add main.css
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file
         $stub_main_css = \file_get_contents(\dirname(WIND_PRESS::FILE) . '/stubs/main.css');
         $main_css = $stub_main_css;
         $main_css_path = \wp_upload_dir()['basedir'] . WIND_PRESS::DATA_DIR . 'main.css';
         if (\file_exists($main_css_path)) {
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file
             $main_css = \file_get_contents($main_css_path);
         }
         // Script content are base64 encoded to prevent it from being executed by the browser.

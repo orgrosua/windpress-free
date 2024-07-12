@@ -25,7 +25,16 @@ class AdminPage
     }
     public function add_admin_menu()
     {
-        $hook = \add_menu_page(\__('WindPress', 'windpress'), \__('WindPress', 'windpress'), 'manage_options', WIND_PRESS::WP_OPTION, fn() => $this->render(), 'data:image/svg+xml;base64,' . \base64_encode(\file_get_contents(\dirname(WIND_PRESS::FILE) . '/windpress.svg')), 1000001);
+        $hook = \add_menu_page(
+            \__('WindPress', 'windpress'),
+            \__('WindPress', 'windpress'),
+            'manage_options',
+            WIND_PRESS::WP_OPTION,
+            fn() => $this->render(),
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file
+            'data:image/svg+xml;base64,' . \base64_encode(\file_get_contents(\dirname(WIND_PRESS::FILE) . '/windpress.svg')),
+            1000001
+        );
         \add_action('load-' . $hook, fn() => $this->init_hooks());
     }
     private function render()

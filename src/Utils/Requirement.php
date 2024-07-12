@@ -124,6 +124,6 @@ class Requirement
             '<strong>' . $name . '</strong>'
         );
         $requirements = \count($this->doesNotMeet) === 0 ? '' : '<ul><li>' . \implode('</li><li>', $this->doesNotMeet) . '</li></ul>';
-        \printf('<div class="notice notice-error"><p>%1$s</p>%2$s</div>', $notice, $requirements);
+        \printf('<div class="notice notice-error"><p>%1$s</p>%2$s</div>', \wp_kses_post($notice), \wp_kses_post($requirements));
     }
 }

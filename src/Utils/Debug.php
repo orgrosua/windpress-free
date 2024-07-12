@@ -46,7 +46,7 @@ class Debug
         if ($stopwatchEvent === []) {
             return;
         }
-        $log = '=== ' . \date('Y-m-d H:i:s', \time()) . ' ===' . \PHP_EOL;
+        $log = '=== ' . \gmdate('Y-m-d H:i:s', \time()) . ' ===' . \PHP_EOL;
         foreach ($stopwatchEvent as $ev) {
             $log .= (string) $ev . \PHP_EOL;
         }

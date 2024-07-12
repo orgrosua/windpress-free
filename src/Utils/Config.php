@@ -73,7 +73,7 @@ class Config
         } else {
             self::data_set($options, $path, $value);
         }
-        \update_option(WIND_PRESS::WP_OPTION . '_options', \json_encode($options, \JSON_THROW_ON_ERROR));
+        \update_option(WIND_PRESS::WP_OPTION . '_options', \wp_json_encode($options, \JSON_THROW_ON_ERROR));
     }
     /**
      * Set an item on an array or object using dot notation.

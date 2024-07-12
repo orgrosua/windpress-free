@@ -59,7 +59,7 @@ class Notice
         $messages = self::get_lists();
         if ($messages && \is_array($messages)) {
             foreach ($messages as $message) {
-                echo \sprintf('<div class="notice notice-%s is-dismissible %s">%s</div>', $message['status'], self::OPTION_NAME, $message['message']);
+                echo \sprintf('<div class="notice notice-%s is-dismissible %s">%s</div>', \esc_attr($message['status']), \esc_attr(self::OPTION_NAME), \wp_kses_post($message['message']));
             }
         }
     }

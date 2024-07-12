@@ -51,7 +51,7 @@ class Cache extends AbstractApi implements ApiInterface
     {
         $payload = $wprestRequest->get_json_params();
         try {
-            $content = \sprintf("/*! %s v%s | %s | %s */\n%s", \strtolower(Common::plugin_data('Name')), WIND_PRESS::VERSION, \date('Y-m-d H:i:s', \time()), \strtolower(Common::plugin_data('PluginURI')), \base64_decode($payload['content']));
+            $content = \sprintf("/*! %s v%s | %s | %s */\n%s", \strtolower(Common::plugin_data('Name')), WIND_PRESS::VERSION, \gmdate('Y-m-d H:i:s', \time()), \strtolower(Common::plugin_data('PluginURI')), \base64_decode($payload['content']));
             CoreCache::save_cache($content);
         } catch (\Throwable $throwable) {
             return new WP_REST_Response(['status' => 'KO', 'message' => 'Save cache error: ' . $throwable->getMessage()], 500);
