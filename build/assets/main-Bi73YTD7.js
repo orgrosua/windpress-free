@@ -1,0 +1,5 @@
+import{c as i}from"./virtual-BozkmeI1.js";import{l as s}from"./logger-DdRf9qrq.js";import{L as r}from"./windpress-a09-ZfRP.js";import"./index-BbP3371Q.js";import"./runtime-core.esm-bundler-cDi-oBs7.js";import"./set--h_0VhSf.js";import"./_MapCache-DN36xuwU.js";const a="#oxygen-topbar .oxygen-toolbar-menus:has(.oxygen-dom-tree-button)",m=document.createRange().createContextualFragment(`
+    <div class="windpressoxygen-settings-button">
+        ${r}
+    </div>
+`),{getVirtualRef:o}=i({},{persist:"windpress.ui.state"}),n=document.querySelector(a);n.insertBefore(m,n.firstChild),window.tippy(".windpressoxygen-settings-button",{content:"Siul \u2014 Oxygen settings (coming soon)",animation:"shift-toward",placement:"bottom"});const e=document.querySelector(".windpressoxygen-settings-button");function d(){const t=o("window.minimized",!1).value;o("window.minimized",!1).value=!t,t?e.classList.add("active"):e.classList.remove("active")}e.addEventListener("click",t=>{d()}),s("Module loaded!",{module:"settings"});
