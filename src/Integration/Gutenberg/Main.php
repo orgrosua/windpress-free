@@ -14,6 +14,7 @@ namespace WindPress\WindPress\Integration\Gutenberg;
 use WIND_PRESS;
 use WindPress\WindPress\Core\Runtime;
 use WindPress\WindPress\Integration\IntegrationInterface;
+use WindPress\WindPress\Utils\AssetVite;
 use WindPress\WindPress\Utils\Config;
 /**
  * @author Joshua Gugun Siagian <suabahasa@gmail.com>
@@ -22,7 +23,6 @@ class Main implements IntegrationInterface
 {
     public function __construct()
     {
-        return;
         \add_filter('f!windpress/core/cache:compile.providers', fn(array $providers): array => $this->register_provider($providers));
         if ($this->is_enabled()) {
             \add_action('enqueue_block_editor_assets', fn() => $this->enqueue_block_editor_assets());
@@ -45,17 +45,18 @@ class Main implements IntegrationInterface
     {
         $screen = \get_current_screen();
         if (\is_admin() && $screen->is_block_editor()) {
-            // add_action('admin_head', fn () => $this->admin_head(), 1_000_001);
+            \add_action('admin_head', fn() => $this->admin_head(), 1000001);
         }
     }
-    // public function admin_head()
-    // {
-    //     Runtime::get_instance()->enqueue_importmap();
-    //     Runtime::get_instance()->enqueue_play_cdn();
-    //     if (strpos($_SERVER['REQUEST_URI'], 'site-editor.php') !== false) {
-    //         wp_enqueue_script(WIND_PRESS::WP_OPTION . '-gutenberg-fse', plugin_dir_url(WIND_PRESS::FILE) . 'build/public/gutenberg/fse.js', [], WIND_PRESS::VERSION, true);
-    //     } else {
-    //         wp_enqueue_script(WIND_PRESS::WP_OPTION . '-gutenberg-observer', plugin_dir_url(WIND_PRESS::FILE) . 'build/public/gutenberg/observer.js', [], WIND_PRESS::VERSION, true);
-    //     }
-    // }
+    public function admin_head()
+    {
+        // Runtime::get_instance()->enqueue_importmap();
+        Runtime::get_instance()->enqueue_play_cdn();
+        if (\strpos($_SERVER['REQUEST_URI'], 'site-editor.php') !== \false) {
+            // wp_enqueue_script(WIND_PRESS::WP_OPTION . '-gutenberg-fse', plugin_dir_url(WIND_PRESS::FILE) . 'build/public/gutenberg/fse.js', [], WIND_PRESS::VERSION, true);
+        } else {
+            // wp_enqueue_script(WIND_PRESS::WP_OPTION . '-gutenberg-observer', plugin_dir_url(WIND_PRESS::FILE) . 'build/public/gutenberg/observer.js', [], WIND_PRESS::VERSION, true);
+            AssetVite::get_instance()->enqueue_asset('assets/integration/gutenberg/post-editor.js', ['handle' => WIND_PRESS::WP_OPTION . ':integration-gutenberg-post-editor', 'in-footer' => \true]);
+        }
+    }
 }

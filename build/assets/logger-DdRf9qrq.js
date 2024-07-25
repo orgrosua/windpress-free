@@ -1,1 +1,0 @@
-function n(e,{type:a="log",module:o=null}={}){console[a](`%cWindPress \u26A1 ${o?"["+o+"]":""}`,"background: #5a5a5a; color: white; padding: 2px 3px; border-radius: 2px; font-size: 0.8em;",e)}export{n as l};

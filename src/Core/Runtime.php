@@ -81,9 +81,9 @@ class Runtime
             \add_action('wp_head', fn() => $this->enqueue_css_cache(), 1000001);
         } else {
             \add_action('wp_head', fn() => $this->enqueue_play_cdn(), 1000001);
-            if (Config::get('general.mission-control.front.enabled', \false) && \current_user_can('manage_options') && !\apply_filters('f!windpress/core/runtime:append_header.mission_control.is_prevent_load', \false)) {
-                \add_action('wp_head', fn() => $this->enqueue_front_panel(), 1000001);
-            }
+        }
+        if (Config::get('general.mission-control.front.enabled', \false) && \current_user_can('manage_options') && !\apply_filters('f!windpress/core/runtime:append_header.mission_control.is_prevent_load', \false)) {
+            \add_action('wp_head', fn() => $this->enqueue_front_panel(), 1000001);
         }
     }
     public function is_cache_exists()
@@ -123,7 +123,7 @@ class Runtime
         }
         // Script content are base64 encoded to prevent it from being executed by the browser.
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo \sprintf("<script type=\"text/tailwindcss\">%s</script>", \base64_encode($main_css));
+        echo \sprintf("<script id=\"windpress:tw-main-css\" type=\"text/tailwindcss\">%s</script>", \base64_encode($main_css));
         AssetVite::get_instance()->enqueue_asset('assets/packages/core/tailwind/autocomplete.js', ['handle' => WIND_PRESS::WP_OPTION . ':autocomplete', 'in-footer' => \true]);
         AssetVite::get_instance()->enqueue_asset('assets/packages/core/tailwind/sort.js', ['handle' => WIND_PRESS::WP_OPTION . ':sort', 'in-footer' => \true]);
         AssetVite::get_instance()->enqueue_asset('assets/packages/core/tailwind/observer.js', ['handle' => WIND_PRESS::WP_OPTION . ':observer', 'in-footer' => \true]);

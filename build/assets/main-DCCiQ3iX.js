@@ -1,0 +1,1 @@
+import{l as a}from"./logger-BTW-zIW3.js";import{i as e}from"./constant-Cdlzk0w4.js";const s=new BroadcastChannel("windpress"),r=e.allSaved;e.allSaved=function(){r.apply(this,arguments),s.postMessage({source:"windpress/integration",target:"windpress/dashboard",task:"windpress.generate-cache",payload:{force_pull:!0}})},a("Module loaded!",{module:"generate-cache"});

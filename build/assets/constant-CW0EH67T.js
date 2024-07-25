@@ -1,1 +1,0 @@
-document.querySelector(".brx-body");const o=document.querySelector(".brx-body").__vue_app__.config.globalProperties,e=document.getElementById("bricks-builder-iframe"),r=e.contentDocument.querySelector(".brx-body").__vue_app__.config.globalProperties;export{e as a,o as b,r as c};
