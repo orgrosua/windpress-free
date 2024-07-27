@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: tailwind css, bricks builder, oxygen builder, breakdance builder
 Requires at least: 6.0
 Tested up to: 6.6
-Stable tag: 3.0.0-alpha.4
+Stable tag: 3.0.0-alpha.5
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -59,12 +59,12 @@ Visit [our website](https://wind.press) for more information.
 
 = 3.0.0 =
 * **New**: Upgraded to Tailwind CSS v4 (4.0.0-alpha.18 next)
-* **New**: [Bricks](https://bricksbuilder.io/) integration **[Pro]**
-* **New**: [LiveCanvas](https://livecanvas.com/?ref=4008) integration
-* **New**: [Oxygen](https://oxygenbuilder.com/) integration **[Pro]**
-* **New**: [Breakdance](https://breakdance.com/ref/165/) integration **[Pro]**
 * **New**: [Timber](https://upstatement.com/timber/) integration
-* **New**: [Builderius](https://builderius.io/?referral=afdfca82c8) integration
+* **New**: [Bricks](https://bricksbuilder.io/) integration **[Pro]**
+* **New**: [Breakdance](https://breakdance.com/ref/165/) integration **[Pro]**
+* **New**: [Builderius](https://builderius.io/?referral=afdfca82c8) integration **[Pro]**
+* **New**: [LiveCanvas](https://livecanvas.com/?ref=4008) integration **[Pro]**
+* **New**: [Oxygen](https://oxygenbuilder.com/) integration **[Pro]**
 * **Improve**: Test compatibility with WordPress 6.6
 
 = 1.0.0 =

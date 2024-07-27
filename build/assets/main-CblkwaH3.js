@@ -1,5 +1,0 @@
-import{c as n}from"./virtual-DAX-8-Vc.js";import{l as s}from"./logger-BTW-zIW3.js";import{L as r}from"./windpress-a09-ZfRP.js";import"./index-BCqmp6kJ.js";import"./index-BbP3371Q.js";import"./runtime-core.esm-bundler-DpP2Prln.js";import"./set-DUhaJHkD.js";import"./_MapCache-IKV2IqD2.js";import"./isObject-B0rSZd8A.js";import"./isSymbol-CDeHjQme.js";const m="#oxygen-topbar .oxygen-toolbar-menus:has(.oxygen-dom-tree-button)",a=document.createRange().createContextualFragment(`
-    <div class="windpressoxygen-settings-button">
-        ${r}
-    </div>
-`),{getVirtualRef:o}=n({},{persist:"windpress.ui.state"}),i=document.querySelector(m);i.insertBefore(a,i.firstChild),window.tippy(".windpressoxygen-settings-button",{content:"Siul \u2014 Oxygen settings (coming soon)",animation:"shift-toward",placement:"bottom"});const e=document.querySelector(".windpressoxygen-settings-button");function d(){const t=o("window.minimized",!1).value;o("window.minimized",!1).value=!t,t?e.classList.add("active"):e.classList.remove("active")}e.addEventListener("click",t=>{d()}),s("Module loaded!",{module:"settings"});
