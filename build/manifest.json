@@ -1,16 +1,17 @@
 {
-  "__MapCache-DN36xuwU.js": {
-    "file": "assets/_MapCache-DN36xuwU.js",
+  "__MapCache-IKV2IqD2.js": {
+    "file": "assets/_MapCache-IKV2IqD2.js",
     "name": "_MapCache",
     "imports": [
-      "_index-BbP3371Q.js"
+      "_isObject-B0rSZd8A.js"
     ]
   },
-  "__initCloneObject-qdQt5wyd.js": {
-    "file": "assets/_initCloneObject-qdQt5wyd.js",
+  "__initCloneObject-BrGMl3JF.js": {
+    "file": "assets/_initCloneObject-BrGMl3JF.js",
     "name": "_initCloneObject",
     "imports": [
-      "__MapCache-DN36xuwU.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js"
     ]
   },
   "__plugin-vue_export-helper-!~{00d}~.js": {
@@ -51,6 +52,14 @@
     "file": "assets/constant-Cdlzk0w4.js",
     "name": "constant"
   },
+  "_debounce-BRZrsgos.js": {
+    "file": "assets/debounce-BRZrsgos.js",
+    "name": "debounce",
+    "imports": [
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js"
+    ]
+  },
   "_highlight-in-textarea-BGLYngo3.js": {
     "file": "assets/highlight-in-textarea-BGLYngo3.js",
     "name": "highlight-in-textarea"
@@ -80,6 +89,20 @@
     "name": "intellisense",
     "imports": [
       "_lib-BTi-OLfO.js"
+    ]
+  },
+  "_isObject-B0rSZd8A.js": {
+    "file": "assets/isObject-B0rSZd8A.js",
+    "name": "isObject",
+    "imports": [
+      "_index-BbP3371Q.js"
+    ]
+  },
+  "_isSymbol-CDeHjQme.js": {
+    "file": "assets/isSymbol-CDeHjQme.js",
+    "name": "isSymbol",
+    "imports": [
+      "_isObject-B0rSZd8A.js"
     ]
   },
   "_lib-BTi-OLfO.js": {
@@ -115,19 +138,21 @@
       "_index-BbP3371Q.js"
     ]
   },
-  "_set-DMzY-ey4.js": {
-    "file": "assets/set-DMzY-ey4.js",
+  "_set-DUhaJHkD.js": {
+    "file": "assets/set-DUhaJHkD.js",
     "name": "set",
     "imports": [
-      "__MapCache-DN36xuwU.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isSymbol-CDeHjQme.js",
+      "_isObject-B0rSZd8A.js"
     ]
   },
-  "_virtual-jm8_YD9i.js": {
-    "file": "assets/virtual-jm8_YD9i.js",
+  "_virtual-DAX-8-Vc.js": {
+    "file": "assets/virtual-DAX-8-Vc.js",
     "name": "virtual",
     "imports": [
       "_index-BCqmp6kJ.js",
-      "_set-DMzY-ey4.js",
+      "_set-DUhaJHkD.js",
       "_runtime-core.esm-bundler-DpP2Prln.js"
     ]
   },
@@ -136,7 +161,7 @@
     "name": "windpress"
   },
   "assets/apps/dashboard/main.js": {
-    "file": "assets/dashboard-D1vl_939.js",
+    "file": "assets/dashboard-BvMlTGJx.js",
     "name": "dashboard",
     "src": "assets/apps/dashboard/main.js",
     "isEntry": true,
@@ -145,17 +170,19 @@
       "_preload-helper-Tcd9XBoB.js",
       "_index-BHzFOpFs.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
-      "_virtual-jm8_YD9i.js",
+      "_virtual-DAX-8-Vc.js",
       "_index.browser-CJrp5d7n.js",
       "_lib-BTi-OLfO.js",
-      "__initCloneObject-qdQt5wyd.js",
-      "__MapCache-DN36xuwU.js",
+      "__initCloneObject-BrGMl3JF.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
       "_build-CY_Da7UH.js",
       "_oxide_parser_wasm-8nf_WcM4.js",
       "_index-BCqmp6kJ.js",
       "_intellisense-CYyfpAnp.js",
       "_index-BbP3371Q.js",
-      "_set-DMzY-ey4.js"
+      "_set-DUhaJHkD.js",
+      "_isSymbol-CDeHjQme.js"
     ],
     "dynamicImports": [
       "node_modules/.pnpm/monaco-editor@0.50.0/node_modules/monaco-editor/esm/vs/basic-languages/css/css.js",
@@ -169,7 +196,7 @@
     ]
   },
   "assets/integration/breakdance/main.js": {
-    "file": "assets/integration/breakdance-C8OHAxIM.js",
+    "file": "assets/integration/breakdance-DyWaHmsb.js",
     "name": "integration/breakdance",
     "src": "assets/integration/breakdance/main.js",
     "isEntry": true,
@@ -193,40 +220,45 @@
     ]
   },
   "assets/integration/breakdance/modules/plain-classses/main.js": {
-    "file": "assets/main-OqYhYvXp.js",
+    "file": "assets/main-Bgs3TVCX.js",
     "name": "main",
     "src": "assets/integration/breakdance/modules/plain-classses/main.js",
     "isDynamicEntry": true,
     "imports": [
       "_logger-BTW-zIW3.js",
       "_highlight-in-textarea-BGLYngo3.js",
-      "__MapCache-DN36xuwU.js",
-      "_set-DMzY-ey4.js",
+      "_debounce-BRZrsgos.js",
+      "_set-DUhaJHkD.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
-      "_index-BbP3371Q.js"
+      "_isObject-B0rSZd8A.js",
+      "_index-BbP3371Q.js",
+      "_isSymbol-CDeHjQme.js",
+      "__MapCache-IKV2IqD2.js"
     ],
     "css": [
       "assets/main-CHeiFpUv.css"
     ]
   },
   "assets/integration/breakdance/modules/settings/main.js": {
-    "file": "assets/main-ByLcPliu.js",
+    "file": "assets/main-Byi7Qd3S.js",
     "name": "main",
     "src": "assets/integration/breakdance/modules/settings/main.js",
     "isDynamicEntry": true,
     "imports": [
-      "_virtual-jm8_YD9i.js",
+      "_virtual-DAX-8-Vc.js",
       "_logger-BTW-zIW3.js",
       "_windpress-a09-ZfRP.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
       "_index-BCqmp6kJ.js",
       "_index-BbP3371Q.js",
-      "_set-DMzY-ey4.js",
-      "__MapCache-DN36xuwU.js"
+      "_set-DUhaJHkD.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js"
     ]
   },
   "assets/integration/bricks/main.js": {
-    "file": "assets/integration/bricks-DYzjAnVl.js",
+    "file": "assets/integration/bricks-3jLcxePE.js",
     "name": "integration/bricks",
     "src": "assets/integration/bricks/main.js",
     "isEntry": true,
@@ -270,7 +302,7 @@
     ]
   },
   "assets/integration/bricks/modules/html2bricks/main.js": {
-    "file": "assets/main-BM-oe2xL.js",
+    "file": "assets/main-vBEcY968.js",
     "name": "main",
     "src": "assets/integration/bricks/modules/html2bricks/main.js",
     "isDynamicEntry": true,
@@ -278,13 +310,14 @@
       "_constant-CWUMdlVX.js",
       "_logger-BTW-zIW3.js",
       "_index.browser-CJrp5d7n.js",
-      "__initCloneObject-qdQt5wyd.js",
-      "__MapCache-DN36xuwU.js",
+      "__initCloneObject-BrGMl3JF.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
       "_index-BbP3371Q.js"
     ]
   },
   "assets/integration/bricks/modules/plain-classses/main.js": {
-    "file": "assets/main-Dkk3BDNL.js",
+    "file": "assets/main-QU2vvIG9.js",
     "name": "main",
     "src": "assets/integration/bricks/modules/plain-classses/main.js",
     "isDynamicEntry": true,
@@ -294,8 +327,11 @@
       "_highlight-in-textarea-BGLYngo3.js",
       "_constant-CWUMdlVX.js",
       "_index-BHzFOpFs.js",
+      "_debounce-BRZrsgos.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
-      "_index-BbP3371Q.js"
+      "_isObject-B0rSZd8A.js",
+      "_index-BbP3371Q.js",
+      "_isSymbol-CDeHjQme.js"
     ],
     "dynamicImports": [
       "node_modules/.pnpm/shiki@1.12.0/node_modules/shiki/dist/wasm.mjs",
@@ -308,26 +344,28 @@
     ]
   },
   "assets/integration/bricks/modules/settings/main.js": {
-    "file": "assets/main-DT3CCoH4.js",
+    "file": "assets/main-BcicuGE7.js",
     "name": "main",
     "src": "assets/integration/bricks/modules/settings/main.js",
     "isDynamicEntry": true,
     "imports": [
-      "_virtual-jm8_YD9i.js",
+      "_virtual-DAX-8-Vc.js",
       "_logger-BTW-zIW3.js",
       "_windpress-a09-ZfRP.js",
       "_index-BCqmp6kJ.js",
       "_index-BbP3371Q.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
-      "_set-DMzY-ey4.js",
-      "__MapCache-DN36xuwU.js"
+      "_set-DUhaJHkD.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js"
     ],
     "css": [
       "assets/main-DTL87UCN.css"
     ]
   },
   "assets/integration/bricks/modules/variable-picker/main.js": {
-    "file": "assets/main-CK37PWll.js",
+    "file": "assets/main-C6cPgDgm.js",
     "name": "main",
     "src": "assets/integration/bricks/modules/variable-picker/main.js",
     "isDynamicEntry": true,
@@ -341,11 +379,13 @@
       "_oxide_parser_wasm-8nf_WcM4.js",
       "_intellisense-CYyfpAnp.js",
       "_index-BCqmp6kJ.js",
-      "_set-DMzY-ey4.js",
+      "_set-DUhaJHkD.js",
       "_index-BHzFOpFs.js",
       "_index-BbP3371Q.js",
       "_preload-helper-Tcd9XBoB.js",
-      "__MapCache-DN36xuwU.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js"
     ],
     "css": [
       "assets/main-BUOMUE3A.css"
@@ -378,7 +418,7 @@
     ]
   },
   "assets/integration/oxygen/editor/main.js": {
-    "file": "assets/integration/oxygen/editor-Bl7LkrdD.js",
+    "file": "assets/integration/oxygen/editor-DZS0v1dT.js",
     "name": "integration/oxygen/editor",
     "src": "assets/integration/oxygen/editor/main.js",
     "isEntry": true,
@@ -419,19 +459,21 @@
     ]
   },
   "assets/integration/oxygen/editor/modules/settings/main.js": {
-    "file": "assets/main-33gTfdaH.js",
+    "file": "assets/main-CblkwaH3.js",
     "name": "main",
     "src": "assets/integration/oxygen/editor/modules/settings/main.js",
     "isDynamicEntry": true,
     "imports": [
-      "_virtual-jm8_YD9i.js",
+      "_virtual-DAX-8-Vc.js",
       "_logger-BTW-zIW3.js",
       "_windpress-a09-ZfRP.js",
       "_index-BCqmp6kJ.js",
       "_index-BbP3371Q.js",
       "_runtime-core.esm-bundler-DpP2Prln.js",
-      "_set-DMzY-ey4.js",
-      "__MapCache-DN36xuwU.js"
+      "_set-DUhaJHkD.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js"
     ],
     "css": [
       "assets/main-Bf3Uf9kg.css"
@@ -444,31 +486,35 @@
     "isEntry": true
   },
   "assets/packages/core/tailwind/play/autocomplete.js": {
-    "file": "assets/packages/core/tailwind/play/autocomplete-DIBMdJBH.js",
+    "file": "assets/packages/core/tailwind/play/autocomplete-1oUij9JF.js",
     "name": "packages/core/tailwind/play/autocomplete",
     "src": "assets/packages/core/tailwind/play/autocomplete.js",
     "isEntry": true,
     "imports": [
       "_lib-BTi-OLfO.js",
       "_intellisense-CYyfpAnp.js",
-      "_set-DMzY-ey4.js",
+      "_set-DUhaJHkD.js",
       "_index-BHzFOpFs.js",
-      "__MapCache-DN36xuwU.js",
-      "_index-BbP3371Q.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_index-BbP3371Q.js",
+      "_isSymbol-CDeHjQme.js"
     ]
   },
   "assets/packages/core/tailwind/play/classname-to-css.js": {
-    "file": "assets/packages/core/tailwind/play/classname-to-css-rAe-stPu.js",
+    "file": "assets/packages/core/tailwind/play/classname-to-css-Bj4zWQOh.js",
     "name": "packages/core/tailwind/play/classname-to-css",
     "src": "assets/packages/core/tailwind/play/classname-to-css.js",
     "isEntry": true,
     "imports": [
       "_lib-BTi-OLfO.js",
       "_intellisense-CYyfpAnp.js",
-      "_set-DMzY-ey4.js",
+      "_set-DUhaJHkD.js",
       "_index-BHzFOpFs.js",
-      "__MapCache-DN36xuwU.js",
-      "_index-BbP3371Q.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_index-BbP3371Q.js",
+      "_isSymbol-CDeHjQme.js"
     ]
   },
   "assets/packages/core/tailwind/play/observer.js": {
@@ -484,17 +530,19 @@
     ]
   },
   "assets/packages/core/tailwind/play/sort.js": {
-    "file": "assets/packages/core/tailwind/play/sort-0A2JD3Pa.js",
+    "file": "assets/packages/core/tailwind/play/sort-CQLeXjTp.js",
     "name": "packages/core/tailwind/play/sort",
     "src": "assets/packages/core/tailwind/play/sort.js",
     "isEntry": true,
     "imports": [
       "_lib-BTi-OLfO.js",
       "_intellisense-CYyfpAnp.js",
-      "_set-DMzY-ey4.js",
+      "_set-DUhaJHkD.js",
       "_index-BHzFOpFs.js",
-      "__MapCache-DN36xuwU.js",
-      "_index-BbP3371Q.js"
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_index-BbP3371Q.js",
+      "_isSymbol-CDeHjQme.js"
     ]
   },
   "node_modules/.pnpm/@windpress+oxide-parser-wasm@1.0.1/node_modules/@windpress/oxide-parser-wasm/oxide_parser_wasm_bg.wasm": {
@@ -516,7 +564,7 @@
     "isDynamicEntry": true
   },
   "node_modules/.pnpm/monaco-editor@0.50.0/node_modules/monaco-editor/esm/vs/language/css/cssMode.js": {
-    "file": "assets/cssMode-zTld9ECr.js",
+    "file": "assets/cssMode-DaHvNSEq.js",
     "name": "cssMode",
     "src": "node_modules/.pnpm/monaco-editor@0.50.0/node_modules/monaco-editor/esm/vs/language/css/cssMode.js",
     "isDynamicEntry": true,
@@ -527,13 +575,15 @@
       "_runtime-core.esm-bundler-DpP2Prln.js",
       "_index-BbP3371Q.js",
       "_preload-helper-Tcd9XBoB.js",
-      "_virtual-jm8_YD9i.js",
+      "_virtual-DAX-8-Vc.js",
       "_index-BCqmp6kJ.js",
-      "_set-DMzY-ey4.js",
-      "__MapCache-DN36xuwU.js",
+      "_set-DUhaJHkD.js",
+      "__MapCache-IKV2IqD2.js",
+      "_isObject-B0rSZd8A.js",
+      "_isSymbol-CDeHjQme.js",
       "_index.browser-CJrp5d7n.js",
       "_lib-BTi-OLfO.js",
-      "__initCloneObject-qdQt5wyd.js",
+      "__initCloneObject-BrGMl3JF.js",
       "_build-CY_Da7UH.js",
       "_oxide_parser_wasm-8nf_WcM4.js",
       "_intellisense-CYyfpAnp.js"
