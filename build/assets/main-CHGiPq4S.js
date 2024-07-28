@@ -1,4 +1,4 @@
-import{c as r}from"./virtual-BLX9NR40.js";import{l as o}from"./logger-BTW-zIW3.js";import{L as a}from"./windpress-a09-ZfRP.js";import"./index-CSonxoTs.js";import"./isObject-B5R9K1Pz.js";import"./runtime-core.esm-bundler-NvJfVFKg.js";import"./set-qX46P2hw.js";import"./_MapCache-C7aBjWBU.js";import"./isSymbol-DJmTqBMq.js";const n="#bricks-toolbar ul.group-wrapper.right",c=document.createRange().createContextualFragment(`
+import{c as r}from"./virtual-zHdhTNt9.js";import{l as o}from"./logger-BTW-zIW3.js";import{L as a}from"./windpress-a09-ZfRP.js";import"./index-BtL5O8vF.js";import"./isObject-B5R9K1Pz.js";import"./runtime-core.esm-bundler-CuuCWbwv.js";import"./set-qX46P2hw.js";import"./_MapCache-C7aBjWBU.js";import"./isSymbol-DJmTqBMq.js";const n="#bricks-toolbar ul.group-wrapper.right",c=document.createRange().createContextualFragment(`
     <li id="windpressbricks-settings-navbar" data-balloon="WindPress \u2014 Bricks settings" data-balloon-pos="bottom">
         <span class="bricks-svg-wrapper">
             ${a}

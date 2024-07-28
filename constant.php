@@ -14,7 +14,7 @@ namespace WindPressPackages;
 /**
  * Plugin constants.
  *
- * @since 1.0.0
+ * @since 3.0.0
  */
 class WIND_PRESS
 {
@@ -25,7 +25,7 @@ class WIND_PRESS
     /**
      * @var string
      */
-    public const VERSION = '3.0.0-alpha.5';
+    public const VERSION = '3.0.0-alpha.6';
     /**
      * @var string
      */
@@ -60,6 +60,6 @@ class WIND_PRESS
 /**
  * Plugin constants.
  *
- * @since 1.0.0
+ * @since 3.0.0
  */
 \class_alias('WindPressPackages\\WIND_PRESS', 'WIND_PRESS', \false);

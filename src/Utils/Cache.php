@@ -14,7 +14,7 @@ namespace WindPress\WindPress\Utils;
 /**
  * Cache utility functions for the plugin.
  *
- * @since 1.0.0
+ * @since 3.0.0
  */
 class Cache
 {

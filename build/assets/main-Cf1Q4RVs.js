@@ -1,4 +1,4 @@
-import{c as a}from"./virtual-BLX9NR40.js";import{l as r}from"./logger-BTW-zIW3.js";import{L as s}from"./windpress-a09-ZfRP.js";import{w as d}from"./runtime-core.esm-bundler-NvJfVFKg.js";import"./index-CSonxoTs.js";import"./isObject-B5R9K1Pz.js";import"./set-qX46P2hw.js";import"./_MapCache-C7aBjWBU.js";import"./isSymbol-DJmTqBMq.js";const c=".topbar-section.undo-redo-top-bar-section",m=document.createRange().createContextualFragment(`
+import{c as a}from"./virtual-zHdhTNt9.js";import{l as r}from"./logger-BTW-zIW3.js";import{L as s}from"./windpress-a09-ZfRP.js";import{w as d}from"./runtime-core.esm-bundler-CuuCWbwv.js";import"./index-BtL5O8vF.js";import"./isObject-B5R9K1Pz.js";import"./set-qX46P2hw.js";import"./_MapCache-C7aBjWBU.js";import"./isSymbol-DJmTqBMq.js";const c=".topbar-section.undo-redo-top-bar-section",m=document.createRange().createContextualFragment(`
     <div class="topbar-section topbar-section-bl">
         <div id="windpressbreakdance-settings-button" class="breakdance-toolbar-icon-button">
             <div class="breakdance-icon" style="width: 18px; height: 18px;">

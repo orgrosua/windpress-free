@@ -19,7 +19,7 @@ use WP_HTML_Tag_Processor;
  *
  * @todo Add translation support. Use filter hook
  *
- * @since 1.0.0
+ * @since 3.0.0
  */
 class AssetVite
 {
