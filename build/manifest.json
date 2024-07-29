@@ -56,6 +56,10 @@
     "file": "assets/constant-Cdlzk0w4.js",
     "name": "constant"
   },
+  "_constant-DeQ1iB0j.js": {
+    "file": "assets/constant-DeQ1iB0j.js",
+    "name": "constant"
+  },
   "_highlight-in-textarea-D3BQRh7N.js": {
     "file": "assets/highlight-in-textarea-D3BQRh7N.js",
     "name": "highlight-in-textarea",
@@ -196,7 +200,7 @@
     ]
   },
   "assets/integration/breakdance/main.js": {
-    "file": "assets/integration/breakdance-rdlKNr2f.js",
+    "file": "assets/integration/breakdance-DnGvRO7g.js",
     "name": "integration/breakdance",
     "src": "assets/integration/breakdance/main.js",
     "isEntry": true,
@@ -207,7 +211,8 @@
     "dynamicImports": [
       "assets/integration/breakdance/modules/settings/main.js",
       "assets/integration/breakdance/modules/plain-classses/main.js",
-      "assets/integration/breakdance/modules/generate-cache/main.js"
+      "assets/integration/breakdance/modules/generate-cache/main.js",
+      "assets/integration/breakdance/modules/variable-picker/main.js"
     ]
   },
   "assets/integration/breakdance/modules/generate-cache/main.js": {
@@ -220,7 +225,7 @@
     ]
   },
   "assets/integration/breakdance/modules/plain-classses/main.js": {
-    "file": "assets/main-BCbp5abS.js",
+    "file": "assets/main-BgkJy_VN.js",
     "name": "main",
     "src": "assets/integration/breakdance/modules/plain-classses/main.js",
     "isDynamicEntry": true,
@@ -228,6 +233,7 @@
       "_preload-helper-Tcd9XBoB.js",
       "_logger-BTW-zIW3.js",
       "_highlight-in-textarea-D3BQRh7N.js",
+      "_constant-DeQ1iB0j.js",
       "_set-qX46P2hw.js",
       "_runtime-core.esm-bundler-CuuCWbwv.js",
       "_isObject-B5R9K1Pz.js",
@@ -262,8 +268,35 @@
       "_isSymbol-DJmTqBMq.js"
     ]
   },
+  "assets/integration/breakdance/modules/variable-picker/main.js": {
+    "file": "assets/main-BCsNkQIZ.js",
+    "name": "main",
+    "src": "assets/integration/breakdance/modules/variable-picker/main.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "__plugin-vue_export-helper-B7AYZ_fF.js",
+      "_logger-BTW-zIW3.js",
+      "_index-DQMxDuq3.js",
+      "_constant-DeQ1iB0j.js",
+      "_runtime-core.esm-bundler-CuuCWbwv.js",
+      "_lib-FVFXNsp8.js",
+      "_build-6XnEkjQY.js",
+      "_oxide_parser_wasm-8nf_WcM4.js",
+      "_intellisense-DggKt6it.js",
+      "_index-BtL5O8vF.js",
+      "_set-qX46P2hw.js",
+      "_index-BHzFOpFs.js",
+      "_isObject-B5R9K1Pz.js",
+      "_preload-helper-Tcd9XBoB.js",
+      "__MapCache-C7aBjWBU.js",
+      "_isSymbol-DJmTqBMq.js"
+    ],
+    "css": [
+      "assets/main-CgCFWBTk.css"
+    ]
+  },
   "assets/integration/bricks/main.js": {
-    "file": "assets/integration/bricks-CfZaBMnG.js",
+    "file": "assets/integration/bricks-C0KNXYfX.js",
     "name": "integration/bricks",
     "src": "assets/integration/bricks/main.js",
     "isEntry": true,
@@ -366,7 +399,7 @@
     ]
   },
   "assets/integration/bricks/modules/variable-picker/main.js": {
-    "file": "assets/main-BFLheB5y.js",
+    "file": "assets/main-CKnmhuOc.js",
     "name": "main",
     "src": "assets/integration/bricks/modules/variable-picker/main.js",
     "isDynamicEntry": true,
@@ -410,7 +443,7 @@
     ]
   },
   "assets/integration/builderius/main.js": {
-    "file": "assets/integration/builderius-idyUUboX.js",
+    "file": "assets/integration/builderius-Dr5p8jd9.js",
     "name": "integration/builderius",
     "src": "assets/integration/builderius/main.js",
     "isEntry": true,
@@ -419,6 +452,7 @@
       "_logger-BTW-zIW3.js"
     ],
     "dynamicImports": [
+      "assets/integration/builderius/modules/settings/main.js",
       "assets/integration/builderius/modules/generate-cache/main.js",
       "assets/integration/builderius/modules/monaco/main.js",
       "assets/integration/builderius/modules/variable-picker/main.js"
@@ -449,8 +483,28 @@
       "_preload-helper-Tcd9XBoB.js"
     ]
   },
+  "assets/integration/builderius/modules/settings/main.js": {
+    "file": "assets/main-DqPmmMIv.js",
+    "name": "main",
+    "src": "assets/integration/builderius/modules/settings/main.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_virtual-zHdhTNt9.js",
+      "_logger-BTW-zIW3.js",
+      "_windpress-a09-ZfRP.js",
+      "_index-BtL5O8vF.js",
+      "_isObject-B5R9K1Pz.js",
+      "_runtime-core.esm-bundler-CuuCWbwv.js",
+      "_set-qX46P2hw.js",
+      "__MapCache-C7aBjWBU.js",
+      "_isSymbol-DJmTqBMq.js"
+    ],
+    "css": [
+      "assets/main-JuCRpTwR.css"
+    ]
+  },
   "assets/integration/builderius/modules/variable-picker/main.js": {
-    "file": "assets/main-C7J4bGOx.js",
+    "file": "assets/main-ZvbHZRX-.js",
     "name": "main",
     "src": "assets/integration/builderius/modules/variable-picker/main.js",
     "isDynamicEntry": true,
@@ -473,7 +527,7 @@
       "_isSymbol-DJmTqBMq.js"
     ],
     "css": [
-      "assets/main-Bi7fpNLS.css"
+      "assets/main-We5zHuRR.css"
     ]
   },
   "assets/integration/gutenberg/post-editor.js": {
