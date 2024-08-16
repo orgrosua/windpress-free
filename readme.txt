@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/Q5Q75XSF7
 Tags: tailwind css, bricks builder, oxygen builder, breakdance builder, gutenberg, elementor 
 Requires at least: 6.0
 Tested up to: 6.6
-Stable tag: 3.0.0-alpha.11
+Stable tag: 3.0.0-alpha.12
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -58,6 +58,11 @@ Visit [our website](https://wind.press) for more information.
 - Image by [Pixel perfect](https://www.flaticon.com/free-icon/wind_727964) on Flaticon
 
 == Frequently Asked Questions ==
+
+= Where I can find a non-compiled version of your javascript and/or CSS related source code? =
+
+The source code is available on [GitHub](https://github.com/orgrosua/windpress-free).
+Some files exclusively available on the Pro version are not included in the repository.
 
 == Changelog ==
 

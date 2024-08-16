@@ -255,7 +255,8 @@ class AssetVite
         $react_refresh_script_src = $this->generate_development_asset_src($manifest, '@react-refresh');
         $script_position = 'after';
         $script = "\n            import RefreshRuntime from \"{$react_refresh_script_src}\";\n            RefreshRuntime.injectIntoGlobalHook(window);\n            window.\$RefreshReg\$ = () => {};\n            window.\$RefreshSig\$ = () => (type) => type;\n            window.__vite_plugin_react_preamble_installed__ = true;\n        ";
-        \wp_add_inline_script(self::VITE_CLIENT_SCRIPT_HANDLE, $script, $script_position);
+        // escape the script to prevent it from being executed by the browser
+        \wp_add_inline_script(self::VITE_CLIENT_SCRIPT_HANDLE, \esc_js($script), $script_position);
         \add_filter('wp_inline_script_attributes', function (array $attributes) use($script_position) : array {
             if (isset($attributes['id']) && $attributes['id'] === self::VITE_CLIENT_SCRIPT_HANDLE . "-js-{$script_position}") {
                 $attributes['type'] = 'module';
